@@ -5,9 +5,14 @@ public class Camera_Follow : MonoBehaviour
     [SerializeField] public Transform Camera_Target;
     [SerializeField] public float Smoothness;
     [SerializeField] public Vector3 Offset;
+    [SerializeField] public GameObject Cam;
     void Start()
     {
         
+    }
+    private void Awake()
+    {
+        Cam = GameObject.FindWithTag("MainCamera");
     }
 
     // Update is called once per frame
