@@ -16,7 +16,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] InputAction Dash;
     [SerializeField] public float Dash_Force;
     [SerializeField] float Dash_Cooldown;
-    [SerializeField] public bool Is_Dashable = false;
+    [SerializeField] public bool Is_Dashing = false;
     [SerializeField] InputAction Interaction;
     [SerializeField] private bool Could_Interact;
     [SerializeField] InputAction Attack;
@@ -75,7 +75,7 @@ public class Player_Movement : MonoBehaviour
                 //Idle Animations and etc. here
 
 
-                Is_Dashable = false;
+                Is_Dashing = false;
 
                 if (Move_Vector != Vector2.zero) {
                     Current_State = Player_States.Run;
@@ -93,7 +93,7 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Idle;
                 }
 
-                else if (Dash.IsPressed() && Is_Dashable == true) {
+                else if (Dash.IsPressed() && Is_Dashing == true) {
                     Current_State = Player_States.Dash;
                 }
 
@@ -101,7 +101,7 @@ public class Player_Movement : MonoBehaviour
 
             case Player_States.Dash:
                 debug_text.text = "Dash";
-                if (Is_Dashable) { StartCoroutine(Dashing()); }
+                if (Is_Dashing) { StartCoroutine(Dashing()); }
                 
                 
                 break;
@@ -137,9 +137,9 @@ public class Player_Movement : MonoBehaviour
         
         
         Player_rb.AddForce(new Vector3(Move_Vector.x,0,Move_Vector.y) * Dash_Force * Time.fixedDeltaTime ,ForceMode.Impulse);
-        Is_Dashable = false;
+        Is_Dashing = false;
         yield return new WaitForSeconds(Dash_Cooldown);
-        Is_Dashable = true;
+        Is_Dashing = true;
         Current_State = Player_States.Run;
         
         
