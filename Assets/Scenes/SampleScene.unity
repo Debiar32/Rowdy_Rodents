@@ -1876,7 +1876,7 @@ MonoBehaviour:
       m_Flags: 0
     - m_Name: 
       m_Id: 4d18873c-b6e6-4321-8ab9-f9fc18f97177
-      m_Path: 
+      m_Path: <Keyboard>/space
       m_Interactions: 
       m_Processors: 
       m_Groups: 
