@@ -127,6 +127,12 @@ public class Player_Movement : MonoBehaviour
         foreach (Collider enemy in hit_enemy)
         {
             Debug.Log("Hit: " + enemy.name);
+            Rigidbody enemyRB = enemy.GetComponent<Rigidbody>();
+            if (enemyRB != null)
+            {
+                Vector3 Push_Back_Direction = (enemy.transform.position - Att_Point.position).normalized;
+                enemyRB.AddForce(Push_Back_Direction * 5f, ForceMode.Impulse);
+            }
         }
         Invoke("Reset_Attack_State", 0.5f);
     }
