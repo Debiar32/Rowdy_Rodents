@@ -32,7 +32,7 @@ public class Enemy_Test_Logic : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        other.gameObject.SetActive(false);
+        
     }
 
 

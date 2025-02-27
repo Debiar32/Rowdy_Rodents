@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -20,7 +21,7 @@ public class Player_Test_Movement : MonoBehaviour
     bool Is_Dashing = false;
     bool Is_Attacking = false;
 
-
+    
 
 
     private void OnEnable()
@@ -45,7 +46,9 @@ public class Player_Test_Movement : MonoBehaviour
     }
     void Start()
     {
-        
+        gameObject.AddComponent<BoxCollider>();
+        BoxCollider bc = gameObject.GetComponent<BoxCollider>(); 
+       
     }
 
     
@@ -69,4 +72,6 @@ public class Player_Test_Movement : MonoBehaviour
         }
       
     }
+
+   
 }
