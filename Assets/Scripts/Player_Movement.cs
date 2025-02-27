@@ -27,6 +27,11 @@ public class Player_Movement : MonoBehaviour
         Respawn
     }
     private Player_States Current_State = Player_States.Idle;
+
+    [SerializeField] private Transform Att_Point;
+    [SerializeField] private float Att_Range = 2.5f;
+    [SerializeField] private LayerMask Enemy_Layer;
+
     private void OnEnable()
     {
         Move.Enable();
@@ -57,7 +62,12 @@ public class Player_Movement : MonoBehaviour
     {
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
-     
+
+        if (Attack.triggered && Current_State != Player_States.Attack)
+        {
+            Current_State = Player_States.Attack;
+            Attacking();
+        }
     }
     private void FixedUpdate()
     {
@@ -111,4 +121,33 @@ public class Player_Movement : MonoBehaviour
         }
     
     }
+    private void Attacking()
+    {
+        Collider[] hit_enemy = Physics.OverlapSphere(Att_Point.position, Att_Range, Enemy_Layer);
+        foreach (Collider enemy in hit_enemy)
+        {
+            Debug.Log("Hit: " + enemy.name);
+        }
+        Invoke("Reset_Attack_State", 0.5f);
+    }
+    private void Reset_Attack_State()
+    {
+        if (Move_Vector != Vector2.zero)
+        {
+            Current_State = Player_States.Run;
+        }
+        else
+        {
+            Current_State = Player_States.Idle;
+        }
+    }
+    private void OnDrawGizmosSelected()
+    {
+        if (Att_Point == null)
+            return;
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(Att_Point.position, Att_Range);
+    }
 }
+
