@@ -1856,7 +1856,7 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
-  Move_Speed: 4.77
+  Move_Speed: 160
   Turning_Speed: 18.16
   Dash:
     m_Name: Dash
@@ -1868,6 +1868,14 @@ MonoBehaviour:
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 486ef86f-22d7-44c9-a4e6-227598226f2f
+      m_Path: <Gamepad>/buttonSouth
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Dash
+      m_Flags: 0
+    - m_Name: 
+      m_Id: 4d18873c-b6e6-4321-8ab9-f9fc18f97177
       m_Path: 
       m_Interactions: 
       m_Processors: 
@@ -1875,8 +1883,9 @@ MonoBehaviour:
       m_Action: Dash
       m_Flags: 0
     m_Flags: 0
-  Dash_Force: 0
-  Dash_Cooldown: 0
+  Dash_Force: 964.9
+  Dash_Cooldown: 0.29
+  Is_Dashable: 0
   Interaction:
     m_Name: Interaction
     m_Type: 0
@@ -1894,6 +1903,7 @@ MonoBehaviour:
       m_Action: Interaction
       m_Flags: 0
     m_Flags: 0
+  Could_Interact: 0
   Attack:
     m_Name: Attack
     m_Type: 0

@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -15,7 +16,9 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] InputAction Dash;
     [SerializeField] public float Dash_Force;
     [SerializeField] float Dash_Cooldown;
+    [SerializeField] public bool Is_Dashable = false;
     [SerializeField] InputAction Interaction;
+    [SerializeField] private bool Could_Interact;
     [SerializeField] InputAction Attack;
     public enum Player_States { 
         Idle,
@@ -69,7 +72,11 @@ public class Player_Movement : MonoBehaviour
         {
             case Player_States.Idle:
                 debug_text.text = "Idle";
-                
+                //Idle Animations and etc. here
+
+
+                Is_Dashable = false;
+
                 if (Move_Vector != Vector2.zero) {
                     Current_State = Player_States.Run;
 
@@ -77,18 +84,25 @@ public class Player_Movement : MonoBehaviour
                 break;
 
             case Player_States.Run:
+                
                 debug_text.text = "Run";
-                Player_rb.linearVelocity = new Vector3(Move_Vector.x, 0, Move_Vector.y) * Move_Speed;
-                Quaternion To_Rot = Quaternion.LookRotation(new Vector3(Move_Vector.x,0,Move_Vector.y),Vector3.up);
-                transform.rotation = Quaternion.RotateTowards(transform.rotation,To_Rot,Turning_Speed);
+                Movement();
+                
 
                 if (Move_Vector == Vector2.zero) {
                     Current_State = Player_States.Idle;
                 }
+
+                else if (Dash.IsPressed() && Is_Dashable == true) {
+                    Current_State = Player_States.Dash;
+                }
+
                 break;
 
             case Player_States.Dash:
                 debug_text.text = "Dash";
+                if (Is_Dashable) { StartCoroutine(Dashing()); }
+                
                 
                 break;
 
@@ -110,5 +124,24 @@ public class Player_Movement : MonoBehaviour
                 break;
         }
     
+    }
+
+    private void Movement()
+    {
+        Player_rb.linearVelocity = new Vector3(Move_Vector.x, 0, Move_Vector.y) * Time.fixedDeltaTime * Move_Speed; 
+        Quaternion To_Rot = Quaternion.LookRotation(new Vector3(Move_Vector.x, 0, Move_Vector.y), Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, To_Rot, Turning_Speed);
+    }
+
+    private IEnumerator Dashing() {
+        
+        
+        Player_rb.AddForce(new Vector3(Move_Vector.x,0,Move_Vector.y) * Dash_Force * Time.fixedDeltaTime ,ForceMode.Impulse);
+        Is_Dashable = false;
+        yield return new WaitForSeconds(Dash_Cooldown);
+        Is_Dashable = true;
+        Current_State = Player_States.Run;
+        
+        
     }
 }
