@@ -140,7 +140,7 @@ public class Player_Movement : MonoBehaviour
         Is_Dashing = false;
         yield return new WaitForSeconds(Dash_Cooldown);
         Is_Dashing = true;
-        Current_State = Player_States.Run;
+        Current_State = Player_States.Idle;
         
         
     }
