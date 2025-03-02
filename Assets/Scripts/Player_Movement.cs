@@ -1,25 +1,40 @@
-using NUnit.Framework;
+
 using System.Collections;
+
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour
 {
+    
+    Gamepad gp = Gamepad.current;
+    Keyboard kb = Keyboard.current;
     public TextMeshProUGUI debug_text;
+    [Header("Pyhsics")]
     [SerializeField] Rigidbody Player_rb;
+
+    [Header("Movement")]
     [SerializeField] InputAction Move;
     Vector2 Move_Vector;
     [SerializeField] public float Move_Speed;
     [SerializeField] private float Turning_Speed;
 
+    [Header("Dashing")]
     [SerializeField] InputAction Dash;
     [SerializeField] public float Dash_Force;
     [SerializeField] float Dash_Cooldown;
     [SerializeField] public bool Is_Dashing = false;
+
+    [Header("Interacting")]
     [SerializeField] InputAction Interaction;
-    [SerializeField] private bool Could_Interact;
+    [SerializeField] private bool Can_Interact;
+
+    [Header("Attack")]
     [SerializeField] InputAction Attack;
+    Player_Attack_Manager Attack_Manager;
+
+
     public enum Player_States { 
         Idle,
         Run,
@@ -36,7 +51,7 @@ public class Player_Movement : MonoBehaviour
         Dash.Enable();
         Interaction.Enable();
         Attack.Enable();
-
+        
     }
 
     private void OnDisable()
@@ -48,7 +63,9 @@ public class Player_Movement : MonoBehaviour
     }
     private void Awake()
     {
-        Player_rb = gameObject.GetComponent<Rigidbody>();
+        Player_rb = GetComponent<Rigidbody>();
+        Attack_Manager = GetComponent<Player_Attack_Manager>();
+        
     }
     void Start()
     {
@@ -65,6 +82,7 @@ public class Player_Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Handle_State();
+        Debug.Log(Is_Dashing);
     }
 
     private void Handle_State() {
@@ -72,6 +90,7 @@ public class Player_Movement : MonoBehaviour
         {
             case Player_States.Idle:
                 debug_text.text = "Idle";
+                Player_rb.linearVelocity = Vector3.zero;
                 //Idle Animations and etc. here
 
 
@@ -93,7 +112,7 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Idle;
                 }
 
-                else if (Dash.IsPressed() && Is_Dashing == true) {
+                else if (Dash.IsPressed() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
 
@@ -101,7 +120,9 @@ public class Player_Movement : MonoBehaviour
 
             case Player_States.Dash:
                 debug_text.text = "Dash";
-                if (Is_Dashing) { StartCoroutine(Dashing()); }
+                StopAllCoroutines();
+                StartCoroutine(Dashing());
+                Current_State = Player_States.Run;
                 
                 
                 break;
@@ -135,12 +156,13 @@ public class Player_Movement : MonoBehaviour
 
     private IEnumerator Dashing() {
         
-        
-        Player_rb.AddForce(new Vector3(Move_Vector.x,0,Move_Vector.y) * Dash_Force * Time.fixedDeltaTime ,ForceMode.Impulse);
-        Is_Dashing = false;
-        yield return new WaitForSeconds(Dash_Cooldown);
         Is_Dashing = true;
+        Player_rb.AddForce(transform.forward * Dash_Force  ,ForceMode.Impulse);
         Current_State = Player_States.Idle;
+        yield return new WaitForSeconds(Dash_Cooldown);
+        Is_Dashing = false;
+        
+        
         
         
     }
