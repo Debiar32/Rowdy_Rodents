@@ -34,6 +34,9 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] InputAction Attack;
     Player_Attack_Manager Attack_Manager;
     [SerializeField] public bool is_Attacking = false;
+    [SerializeField] public bool Can_Attack = true;
+    [SerializeField] private float Delay_Between_Attacks;
+    [SerializeField] private float Attack_Cooldown;
     public int Attack_Order = 0;
 
 
@@ -108,7 +111,7 @@ public class Player_Movement : MonoBehaviour
                 
                 debug_text.text = "Run";
                 Movement();
-                
+
 
                 if (Move_Vector == Vector2.zero) {
                     Current_State = Player_States.Idle;
@@ -116,6 +119,11 @@ public class Player_Movement : MonoBehaviour
 
                 else if (Dash.IsPressed() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
+                }
+                else if (Attack.IsPressed() && Can_Attack == true) {
+                    Player_rb.linearVelocity = Vector3.zero;
+                    Current_State = Player_States.Attack;
+
                 }
 
                 break;
@@ -130,6 +138,7 @@ public class Player_Movement : MonoBehaviour
                 break;
 
             case Player_States.Attack:
+                gp.SetMotorSpeeds(10, 10);
                 debug_text.text = "Attack";
                 
                 break;
