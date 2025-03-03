@@ -18,8 +18,13 @@ public class Player_Attack_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        player_movement = GetComponent<Player_Movement>();
+       
+        
 
+    }
+    private void Awake()
+    {
+        player_movement = GetComponent<Player_Movement>();
     }
 
     // Update is called once per frame
@@ -45,7 +50,8 @@ public class Player_Attack_Manager : MonoBehaviour
 
     }
 
-    private void Slash(float range) { 
+    private void Slash(float range) 
+    { 
         
     
     }
