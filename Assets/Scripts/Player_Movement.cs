@@ -33,6 +33,8 @@ public class Player_Movement : MonoBehaviour
     [Header("Attack")]
     [SerializeField] InputAction Attack;
     Player_Attack_Manager Attack_Manager;
+    [SerializeField] public bool is_Attacking = false;
+    public int Attack_Order = 0;
 
 
     public enum Player_States { 
@@ -77,7 +79,7 @@ public class Player_Movement : MonoBehaviour
     {
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
-     
+     Attack_Order = Mathf.Clamp(Attack_Order,0,3);
     }
     private void FixedUpdate()
     {
