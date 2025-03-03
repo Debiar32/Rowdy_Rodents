@@ -157,6 +157,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
+        
         Player_rb.AddForce(transform.forward * Dash_Force  ,ForceMode.Impulse);
         Current_State = Player_States.Idle;
         yield return new WaitForSeconds(Dash_Cooldown);
