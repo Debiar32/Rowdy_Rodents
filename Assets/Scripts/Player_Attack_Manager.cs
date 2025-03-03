@@ -28,8 +28,14 @@ public class Player_Attack_Manager : MonoBehaviour
         
     }
 
-    private void Handle_Attacks() { 
-    
+    private void Handle_Attacks() {
+
+        switch (Current_Attack_State)
+        {
+                case Attack_States.Idle:
+                Debug.Log("idling");
+                break;
+        }
     }
 
     IEnumerator Glave_Slash()
