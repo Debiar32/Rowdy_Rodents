@@ -11,7 +11,7 @@ public class Health_System : MonoBehaviour
     }
     public void Deal_Damage(float damage)
     {
-        current_health -= max_health;
+        current_health -= damage;
         Debug.Log(gameObject.name + "took damage equal to:" + damage + ". Updated hp: " + current_health);
 
         if(current_health <=0)

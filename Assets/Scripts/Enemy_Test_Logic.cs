@@ -9,6 +9,7 @@ public class Enemy_Test_Logic : MonoBehaviour
     [SerializeField] private float Chase_Distance;
     
     [SerializeField] private GameObject Target;
+    [SerializeField] public float Attack_Damage = 20f;
     Vector3 direction;
     void Start()
     {
@@ -32,8 +33,14 @@ public class Enemy_Test_Logic : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-        
+        Health_System target_hp = other.gameObject.GetComponent<Health_System>();
+        if (target_hp != null)
+        {
+            target_hp.Deal_Damage(Attack_Damage);
+            Debug.Log("Hit: " + other.gameObject.name + " for " + Attack_Damage);
+        }
     }
+
 
 
 }
