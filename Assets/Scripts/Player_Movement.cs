@@ -44,7 +44,7 @@ public class Player_Movement : MonoBehaviour
         Die,
         Respawn
     }
-    private Player_States Current_State = Player_States.Idle;
+    public Player_States Current_State = Player_States.Idle;
     private void OnEnable()
     {
         Move.Enable();
