@@ -16,10 +16,11 @@ public class Player_Test_Movement : MonoBehaviour
     [SerializeField] private float Dash_Force;
     [SerializeField] private float Rotation_Speed;
     [SerializeField] public Camera_Follow cam_follow;
+    [SerializeField] private Enemy_Spawner spawner;
     bool Is_Moving = false;
     bool Is_Dashing = false;
     bool Is_Attacking = false;
-
+    public bool Is_Interacted = false;
 
 
 
@@ -28,6 +29,7 @@ public class Player_Test_Movement : MonoBehaviour
         Move.Enable();
         Dash.Enable();
         Interaction.Enable();
+        Interaction.performed += On_Interaction;
         Attack.Enable();
     }
     private void OnDisable()
@@ -35,6 +37,7 @@ public class Player_Test_Movement : MonoBehaviour
         Move.Disable();
         Dash.Disable();
         Interaction.Disable();
+        Interaction.performed -= On_Interaction;
         Attack.Disable();
     }
     private void Awake()
@@ -42,6 +45,18 @@ public class Player_Test_Movement : MonoBehaviour
         Player_Rb = GetComponent<Rigidbody>();
         Cam_Pivot = GameObject.FindWithTag("Cam_Pivot");
         cam_follow = Cam_Pivot.GetComponent<Camera_Follow>();
+    }
+    private void On_Interaction(InputAction.CallbackContext context)
+    {
+        if (spawner != null)
+        {
+            Debug.Log("Interaction; enemies let's go");
+            spawner.Activate_Spawn(transform);
+        }
+        else
+        {
+            Debug.Log("No spawner detected");
+        }
     }
     void Start()
     {
