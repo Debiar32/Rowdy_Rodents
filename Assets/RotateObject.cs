@@ -9,7 +9,7 @@ public class RotateObject : MonoBehaviour
         // Print the rotation speed to the console
         Debug.Log("Rotation Speed: " + rotationSpeed);
 
-        // Rotate the object around its Y-axis every frame
-        transform.Rotate(0, rotationSpeed * Time.deltaTime, 0);
+        // Rotate the object around its Z-axis every frame
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 }
