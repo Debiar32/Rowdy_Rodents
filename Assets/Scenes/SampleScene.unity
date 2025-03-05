@@ -2010,11 +2010,11 @@ MonoBehaviour:
   Turning_Speed: 18
   Dash:
     m_Name: Dash
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 60ac62cb-5869-4a30-82e2-cb256b3c27e3
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 486ef86f-22d7-44c9-a4e6-227598226f2f
@@ -2038,11 +2038,11 @@ MonoBehaviour:
   Is_Dashing: 0
   Interaction:
     m_Name: Interaction
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 2f8bfd30-bc09-4bd6-9098-5fe7ddcb3568
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: cff1a8e7-3148-4565-a03a-1542036bb79d
@@ -2064,11 +2064,11 @@ MonoBehaviour:
   Can_Interact: 0
   Attack:
     m_Name: Attack
-    m_Type: 0
-    m_ExpectedControlType: 
+    m_Type: 1
+    m_ExpectedControlType: Button
     m_Id: 81a94db0-27bb-482c-9c6c-9a9d2f081d19
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 2f4b09b3-71f0-4457-b4fb-c9067babfce7
@@ -2079,6 +2079,11 @@ MonoBehaviour:
       m_Action: Attack
       m_Flags: 0
     m_Flags: 0
+  is_Attacking: 0
+  Can_Attack: 1
+  Delay_Between_Attacks: 0
+  Attack_Cooldown: 0
+  Attack_Order: 0
   Current_State: 0
 --- !u!114 &1777557974
 MonoBehaviour:
