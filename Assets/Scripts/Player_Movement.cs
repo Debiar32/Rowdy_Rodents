@@ -90,6 +90,12 @@ public class Player_Movement : MonoBehaviour
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
      
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+        
+     
+        
+>>>>>>> Stashed changes
 =======
         
      
@@ -133,7 +139,10 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Dash;
                 }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
                 else if (Attack.WasPressedThisFrame() && Can_Attack == true) {
                     Player_rb.linearVelocity = Vector3.zero;
                     Current_State = Player_States.Attack;
@@ -154,6 +163,10 @@ public class Player_Movement : MonoBehaviour
 
             case Player_States.Attack:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+                
+>>>>>>> Stashed changes
 =======
                 
 >>>>>>> Stashed changes
