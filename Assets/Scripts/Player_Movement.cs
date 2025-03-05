@@ -2,7 +2,6 @@
 using System.Collections;
 
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -30,11 +29,9 @@ public class Player_Movement : MonoBehaviour
     [Header("Interacting")]
     [SerializeField] InputAction Interaction;
     [SerializeField] private bool Can_Interact;
-    
 
     [Header("Attack")]
     [SerializeField] InputAction Attack;
-    
     Player_Attack_Manager Attack_Manager;
 
 
@@ -55,7 +52,6 @@ public class Player_Movement : MonoBehaviour
         Interaction.Enable();
         Attack.Enable();
         
-
     }
 
     private void OnDisable()
@@ -64,18 +60,12 @@ public class Player_Movement : MonoBehaviour
         Dash.Disable();
         Interaction.Disable();
         Attack.Disable();
-        
-        
     }
-    
-    
-
     private void Awake()
     {
         Player_rb = GetComponent<Rigidbody>();
         Attack_Manager = GetComponent<Player_Attack_Manager>();
-        Attack_Order = Mathf.Clamp(Attack_Order, 0, 3);
-
+        
     }
     void Start()
     {
@@ -85,27 +75,14 @@ public class Player_Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
      
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-        
-     
-        
->>>>>>> Stashed changes
-=======
-        
-     
-        
->>>>>>> Stashed changes
     }
     private void FixedUpdate()
     {
         Handle_State();
-       // Debug.Log(Is_Dashing);
+        Debug.Log(Is_Dashing);
     }
 
     private void Handle_State() {
@@ -135,20 +112,9 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Idle;
                 }
 
-                else if (Dash.IsInProgress() && Is_Dashing == false) {
+                else if (Dash.IsPressed() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> Stashed changes
-                else if (Attack.WasPressedThisFrame() && Can_Attack == true) {
-                    Player_rb.linearVelocity = Vector3.zero;
-                    Current_State = Player_States.Attack;
-
-                }
->>>>>>> Stashed changes
 
                 break;
 
@@ -162,14 +128,6 @@ public class Player_Movement : MonoBehaviour
                 break;
 
             case Player_States.Attack:
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-                
->>>>>>> Stashed changes
-=======
-                
->>>>>>> Stashed changes
                 debug_text.text = "Attack";
                 
                 break;
@@ -196,37 +154,17 @@ public class Player_Movement : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, To_Rot, Turning_Speed);
     }
 
-
-   
-
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
         
         Player_rb.AddForce(transform.forward * Dash_Force  ,ForceMode.Impulse);
+        Current_State = Player_States.Idle;
         yield return new WaitForSeconds(Dash_Cooldown);
-        StartCoroutine(End_Dash());
-       
-        
-        
-        
-        
-        
-    }
-
-    private IEnumerator End_Dash() {
-        yield return new WaitForEndOfFrame();
         Is_Dashing = false;
-        if (Move_Vector != Vector2.zero)
-        {
-            Current_State = Player_States.Run;
-        }
-        else if (Move_Vector == Vector2.zero)
-        {
-
-            Current_State = Player_States.Idle;
-        }
+        
+        
+        
+        
     }
-
-    
 }
