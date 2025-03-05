@@ -2040,6 +2040,9 @@ MonoBehaviour:
 =======
   Dash_Force: 120
   Dash_Cooldown: 0.9
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   Is_Dashing: 0
   Interaction:
@@ -2086,7 +2089,10 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
   is_Attacking: 0
   Can_Attack: 1
   Delay_Between_Attacks: 0
