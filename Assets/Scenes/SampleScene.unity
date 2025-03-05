@@ -1864,7 +1864,7 @@ MonoBehaviour:
     m_ExpectedControlType: 
     m_Id: 60ac62cb-5869-4a30-82e2-cb256b3c27e3
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 486ef86f-22d7-44c9-a4e6-227598226f2f
@@ -1883,8 +1883,8 @@ MonoBehaviour:
       m_Action: Dash
       m_Flags: 0
     m_Flags: 0
-  Dash_Force: 50
-  Dash_Cooldown: 0.29
+  Dash_Force: 120
+  Dash_Cooldown: 0.5
   Is_Dashing: 0
   Interaction:
     m_Name: Interaction
@@ -1903,7 +1903,7 @@ MonoBehaviour:
       m_Action: Interaction
       m_Flags: 0
     m_Flags: 0
-  Could_Interact: 0
+  Can_Interact: 0
   Attack:
     m_Name: Attack
     m_Type: 0

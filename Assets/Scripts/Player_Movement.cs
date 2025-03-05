@@ -112,7 +112,7 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Idle;
                 }
 
-                else if (Dash.IsPressed() && Is_Dashing == false) {
+                else if (Dash.IsInProgress() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
 
@@ -157,14 +157,19 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
-        
         Player_rb.AddForce(transform.forward * Dash_Force  ,ForceMode.Impulse);
-        Current_State = Player_States.Idle;
         yield return new WaitForSeconds(Dash_Cooldown);
+        StartCoroutine(End_Dash());
+        
+           
+    }
+
+    private IEnumerator End_Dash() { 
+        yield return new WaitForEndOfFrame();
         Is_Dashing = false;
+        Current_State = Player_States.Idle;
         
-        
-        
-        
+
+
     }
 }
