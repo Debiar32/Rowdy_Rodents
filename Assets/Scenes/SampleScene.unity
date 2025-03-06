@@ -1804,7 +1804,7 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: b76a1185-609e-4baf-a6cc-79c615d55284
-    m_Processors: 
+    m_Processors: Normalize(max=1)
     m_Interactions: 
     m_SingletonActionBindings:
     - m_Name: 
