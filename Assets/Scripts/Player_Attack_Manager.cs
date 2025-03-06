@@ -5,7 +5,8 @@ public class Player_Attack_Manager : MonoBehaviour
 {
     [SerializeField] private Transform Attack_ref;
     [SerializeField] private Player_Movement player_movement;
-
+    [SerializeField] private int Attack_Order = 0;
+     
     public enum Attack_States
     {
         Idle,
