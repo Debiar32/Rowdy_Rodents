@@ -6,6 +6,9 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] private Transform Attack_ref;
     [SerializeField] private Player_Movement player_movement;
     [SerializeField] private int Attack_Order = 0;
+    [SerializeField] private TrailRenderer Slash_Effect;
+    [SerializeField] private Rigidbody Player_Rb;
+
      
     public enum Attack_States
     {
@@ -19,13 +22,16 @@ public class Player_Attack_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+      
         
 
     }
     private void Awake()
     {
         player_movement = GetComponent<Player_Movement>();
+        Player_Rb = player_movement.gameObject.GetComponent<Rigidbody>();
+        
+
     }
 
     // Update is called once per frame
@@ -40,7 +46,7 @@ public class Player_Attack_Manager : MonoBehaviour
         {
                 case Attack_States.Idle:
                 Debug.Log("idling");
-                break;
+                
         }
     }
 

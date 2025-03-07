@@ -31,7 +31,7 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private bool Can_Interact;
 
     [Header("Attack")]
-    [SerializeField] InputAction Attack;
+    [SerializeField]  InputAction Attack;
     Player_Attack_Manager Attack_Manager;
     [SerializeField] public bool is_Attacking = false;
     [SerializeField] public bool Can_Attack = true;
