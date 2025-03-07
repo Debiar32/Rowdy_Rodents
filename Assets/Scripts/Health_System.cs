@@ -67,19 +67,25 @@ public class Health_System : MonoBehaviour
         }
     }
 
-    private void SpawnBubbles()
+private void SpawnBubbles()
+{
+    if (bubbleEffectPrefab != null && effectSpawnPoint != null)
     {
-        if (bubbleEffectPrefab != null && effectSpawnPoint != null)
-        {
-            // Instantiate the bubble effect at the spawn point
-            Instantiate(bubbleEffectPrefab, lastSpawnPosition, Quaternion.identity);
-        }
-        else
-        {
-            // If bubbleEffectPrefab is null, destroy the GameObject this script is attached to
-            Destroy(gameObject);
-        }
+        // Instantiate the bubble effect at the spawn point and set the parent to effectSpawnPoint
+        GameObject bubble = Instantiate(bubbleEffectPrefab, lastSpawnPosition, Quaternion.identity);
+        
+        // Set the instantiated bubble's parent to the effectSpawnPoint
+        bubble.transform.SetParent(effectSpawnPoint);
+
+        // Optionally, reset the local position to ensure it doesn't get offset (optional, depending on your needs)
+        bubble.transform.localPosition = Vector3.zero;
     }
+    else
+    {
+        // If bubbleEffectPrefab is null, destroy the GameObject this script is attached to
+        Destroy(gameObject);
+    }
+}
 
 
 }
