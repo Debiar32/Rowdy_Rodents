@@ -77,6 +77,7 @@ public class Player_Attack_Manager : MonoBehaviour
         if (player_movement.Current_State == Player_Movement.Player_States.Idle || player_movement.Current_State == Player_Movement.Player_States.Run) {
             Can_Attack = true;   
         }
+        Handle_Attacks();
     }
 
     private void Handle_Attacks() {
@@ -86,13 +87,18 @@ public class Player_Attack_Manager : MonoBehaviour
                 case Attack_States.Idle:
                     Debug_text.text = "Idling";
                     if (Can_Attack == true && Attack.IsInProgress()) {
-                        
+                    Current_Attack_State = Attack_States.Basic_Slash_Glave;
                     }
                     
                     break;
 
                 case Attack_States.Basic_Slash_Glave:
                     Debug_text.text = "Basic_Slash";
+                    StopAllCoroutines();
+                    StartCoroutine(Basic_Slash());
+                    if (Can_Attack == false) {
+                        Current_Attack_State = Attack_States.Idle;
+                        }
                     
                     break;
 
@@ -113,5 +119,12 @@ public class Player_Attack_Manager : MonoBehaviour
         Detected_Enemies = Physics.OverlapSphere(Attack_ref.position,range,Enemy);
         
     
+    }
+
+    private IEnumerator Basic_Slash() {
+        yield return new WaitForSeconds(.3f);
+        Debug.Log("Slashed");
+
+
     }
 }

@@ -2326,7 +2326,7 @@ MonoBehaviour:
   Attack_Order: 0
   Attack_ref: {fileID: 0}
   player_movement: {fileID: 0}
-  Slash_Effect: {fileID: 0}
+  Slash_Effect: {fileID: 1385455740}
   Player_Rb: {fileID: 0}
   Debug_text: {fileID: 0}
   Enemy_Health: {fileID: 0}
