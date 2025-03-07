@@ -6,16 +6,16 @@ using UnityEngine.InputSystem;
 public class Player_Attack_Manager : MonoBehaviour
 {
 
-    
-     [Header("Attack")]
-    [SerializeField]  InputAction Attack;
+
+    [Header("Attack")]
+    [SerializeField] InputAction Attack;
     [SerializeField] InputAction Heavy_Attack;
-    
+
     [SerializeField] public bool is_Attacking = false;
     [SerializeField] public bool Can_Attack = true;
     [SerializeField] private float Delay_Between_Attacks;
     [SerializeField] private float Attack_Cooldown;
-                     public int Attack_Order = 0; 
+    [SerializeField]  public int Attack_Order = 0; 
      
      
     [SerializeField] private Transform Attack_ref;
@@ -27,6 +27,8 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] private Health_System Enemy_Health;
     [SerializeField] private Collider[] Detected_Enemies;
     [SerializeField] private LayerMask Enemy;
+
+    private Coroutine Active_Attack = null;
 
 
 
@@ -94,9 +96,12 @@ public class Player_Attack_Manager : MonoBehaviour
 
                 case Attack_States.Basic_Slash_Glave:
                     Debug_text.text = "Basic_Slash";
-                    StopAllCoroutines();
-                    StartCoroutine(Basic_Slash());
-                    if (Can_Attack == false) {
+                    if (Active_Attack != null) {
+                     StopCoroutine(Active_Attack);
+                     }
+                    Active_Attack = StartCoroutine(Basic_Slash());
+                    
+                    if (Can_Attack == false && ! Attack.IsInProgress()) {
                         Current_Attack_State = Attack_States.Idle;
                         }
                     

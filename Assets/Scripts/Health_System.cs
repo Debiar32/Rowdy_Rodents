@@ -4,7 +4,7 @@ public class Health_System : MonoBehaviour
 {
     public float max_health = 200f;
     private float current_health;
-    bool Is_Player = false;
+    public bool Is_Player = false;
     public bool Is_Invincible = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
