@@ -955,6 +955,7 @@ GameObject:
   - component: {fileID: 583748157}
   - component: {fileID: 583748156}
   - component: {fileID: 583748158}
+  - component: {fileID: 583748159}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -977,6 +978,7 @@ MonoBehaviour:
   Move_Speed: 1.48
   Chase_Distance: 16.97
   Target: {fileID: 0}
+  Attack_Damage: 20
 --- !u!4 &583748157
 Transform:
   m_ObjectHideFlags: 0
@@ -1017,6 +1019,19 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
+--- !u!114 &583748159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583748155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d096e2a8eccf6834eab64ac68ecc6c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 200
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -2037,6 +2052,7 @@ GameObject:
   - component: {fileID: 1777557969}
   - component: {fileID: 1777557973}
   - component: {fileID: 1777557971}
+  - component: {fileID: 1777557975}
   - component: {fileID: 1777557974}
   m_Layer: 0
   m_Name: Player
@@ -2282,6 +2298,19 @@ MonoBehaviour:
   Player_Rb: {fileID: 0}
   Debug_text: {fileID: 833170121}
   Current_Attack_State: 0
+--- !u!114 &1777557975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777557968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d096e2a8eccf6834eab64ac68ecc6c7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  max_health: 200
 --- !u!1 &1803788202
 GameObject:
   m_ObjectHideFlags: 0

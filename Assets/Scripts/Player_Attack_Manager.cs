@@ -10,6 +10,8 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] private TrailRenderer Slash_Effect;
     [SerializeField] private Rigidbody Player_Rb;
     [SerializeField] private TextMeshProUGUI Debug_text;
+    [SerializeField] private Health_System Enemy_Health;
+    [SerializeField] private GameObject[] Detected_Enemies;
 
      
     public enum Attack_States
@@ -67,7 +69,7 @@ public class Player_Attack_Manager : MonoBehaviour
 
     private void Slash(float range) 
     { 
-        
+        Detected_Enemies 
     
     }
 }
