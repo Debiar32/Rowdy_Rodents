@@ -77,7 +77,10 @@ public class Player_Movement : MonoBehaviour
     {
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
-     
+        if (Attack.IsPressed())
+        {
+            Attack_Manager.Perform_Attack();
+        }
     }
     private void FixedUpdate()
     {
