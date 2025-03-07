@@ -977,6 +977,7 @@ MonoBehaviour:
   Move_Speed: 1.48
   Chase_Distance: 16.97
   Target: {fileID: 0}
+  Attack_Damage: 20
 --- !u!4 &583748157
 Transform:
   m_ObjectHideFlags: 0
@@ -1864,7 +1865,7 @@ MonoBehaviour:
     m_ExpectedControlType: 
     m_Id: 60ac62cb-5869-4a30-82e2-cb256b3c27e3
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 486ef86f-22d7-44c9-a4e6-227598226f2f
@@ -1892,7 +1893,7 @@ MonoBehaviour:
     m_ExpectedControlType: 
     m_Id: 2f8bfd30-bc09-4bd6-9098-5fe7ddcb3568
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: cff1a8e7-3148-4565-a03a-1542036bb79d
@@ -1918,7 +1919,7 @@ MonoBehaviour:
     m_ExpectedControlType: 
     m_Id: 81a94db0-27bb-482c-9c6c-9a9d2f081d19
     m_Processors: 
-    m_Interactions: 
+    m_Interactions: Tap
     m_SingletonActionBindings:
     - m_Name: 
       m_Id: 2f4b09b3-71f0-4457-b4fb-c9067babfce7
