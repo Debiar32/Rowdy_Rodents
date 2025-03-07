@@ -1,4 +1,5 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class Player_Attack_Manager : MonoBehaviour
@@ -8,6 +9,7 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] private int Attack_Order = 0;
     [SerializeField] private TrailRenderer Slash_Effect;
     [SerializeField] private Rigidbody Player_Rb;
+    [SerializeField] private TextMeshProUGUI Debug_text;
 
      
     public enum Attack_States
@@ -22,14 +24,14 @@ public class Player_Attack_Manager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-      
-        
+
+        Slash_Effect.gameObject.SetActive(false);
 
     }
     private void Awake()
     {
         player_movement = GetComponent<Player_Movement>();
-        Player_Rb = player_movement.gameObject.GetComponent<Rigidbody>();
+        Player_Rb = GetComponent<Rigidbody>();
         
 
     }
@@ -45,8 +47,14 @@ public class Player_Attack_Manager : MonoBehaviour
         switch (Current_Attack_State)
         {
                 case Attack_States.Idle:
-                Debug.Log("idling");
-                
+                    Debug_text.text = "Idling";
+                    break;
+
+                case Attack_States.Basic_Slash_Glave:
+                    Debug_text.text = "Basic_Slash";
+                    break;
+
+
         }
     }
 
