@@ -1,7 +1,6 @@
 {
   "dependencies": {
     "com.unity.2d.psdimporter": "9.0.3",
-    "com.unity.ai.navigation": "2.0.6",
     "com.unity.collab-proxy": "2.6.0",
     "com.unity.feature.development": "1.0.2",
     "com.unity.inputsystem": "1.12.0",
