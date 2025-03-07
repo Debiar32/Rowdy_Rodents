@@ -2051,9 +2051,9 @@ GameObject:
   - component: {fileID: 1777557970}
   - component: {fileID: 1777557969}
   - component: {fileID: 1777557973}
+  - component: {fileID: 1777557974}
   - component: {fileID: 1777557971}
   - component: {fileID: 1777557975}
-  - component: {fileID: 1777557974}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -2256,28 +2256,6 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   Can_Interact: 0
-  Attack:
-    m_Name: Attack
-    m_Type: 1
-    m_ExpectedControlType: Button
-    m_Id: 81a94db0-27bb-482c-9c6c-9a9d2f081d19
-    m_Processors: 
-    m_Interactions: Tap
-    m_SingletonActionBindings:
-    - m_Name: 
-      m_Id: 2f4b09b3-71f0-4457-b4fb-c9067babfce7
-      m_Path: 
-      m_Interactions: 
-      m_Processors: 
-      m_Groups: 
-      m_Action: Attack
-      m_Flags: 0
-    m_Flags: 0
-  is_Attacking: 0
-  Can_Attack: 1
-  Delay_Between_Attacks: 0
-  Attack_Cooldown: 0
-  Attack_Order: 0
   Current_State: 0
 --- !u!114 &1777557974
 MonoBehaviour:
@@ -2291,12 +2269,71 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94ce49f51bad832438ea480670794b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Attack:
+    m_Name: Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: b356f4d1-b1d6-47c4-98b5-7075a4e6a926
+    m_Processors: 
+    m_Interactions: Tap
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: b5baec17-a6d2-4cd9-8f41-9747311d7e28
+      m_Path: <Gamepad>/buttonWest
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    - m_Name: 
+      m_Id: fee3d3dd-ce8c-427c-a0bd-da86ab2af81a
+      m_Path: <Mouse>/leftButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Attack
+      m_Flags: 0
+    m_Flags: 0
+  Heavy_Attack:
+    m_Name: Heavy_Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6f0a7e58-a708-490a-b307-06c7cda5cd17
+    m_Processors: 
+    m_Interactions: Hold
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 2029aee9-9a29-44e1-ab5a-0c4ddbd86672
+      m_Path: <Gamepad>/rightTrigger
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Heavy_Attack
+      m_Flags: 0
+    - m_Name: 
+      m_Id: a176355f-a503-4236-80f6-ecaaad2e0415
+      m_Path: <Mouse>/middleButton
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Heavy_Attack
+      m_Flags: 0
+    m_Flags: 0
+  is_Attacking: 0
+  Can_Attack: 1
+  Delay_Between_Attacks: 0
+  Attack_Cooldown: 0
+  Attack_Order: 0
   Attack_ref: {fileID: 0}
   player_movement: {fileID: 0}
-  Attack_Order: 0
-  Slash_Effect: {fileID: 1385455740}
+  Slash_Effect: {fileID: 0}
   Player_Rb: {fileID: 0}
-  Debug_text: {fileID: 833170121}
+  Debug_text: {fileID: 0}
+  Enemy_Health: {fileID: 0}
+  Detected_Enemies: []
+  Enemy:
+    serializedVersion: 2
+    m_Bits: 0
   Current_Attack_State: 0
 --- !u!114 &1777557975
 MonoBehaviour:

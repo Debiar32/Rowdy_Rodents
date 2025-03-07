@@ -30,14 +30,17 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] InputAction Interaction;
     [SerializeField] private bool Can_Interact;
 
+    Player_Attack_Manager Attack_Manager;
+    /*
     [Header("Attack")]
     [SerializeField]  InputAction Attack;
-    Player_Attack_Manager Attack_Manager;
+    
     [SerializeField] public bool is_Attacking = false;
     [SerializeField] public bool Can_Attack = true;
     [SerializeField] private float Delay_Between_Attacks;
     [SerializeField] private float Attack_Cooldown;
-    public int Attack_Order = 0;
+    public int Attack_Order = 0; 
+    */
 
 
     public enum Player_States { 
@@ -45,6 +48,7 @@ public class Player_Movement : MonoBehaviour
         Run,
         Dash,
         Attack,
+        Attack_Chain_Window,
         Interaction,
         Die,
         Respawn
@@ -55,7 +59,7 @@ public class Player_Movement : MonoBehaviour
         Move.Enable();
         Dash.Enable();
         Interaction.Enable();
-        Attack.Enable();
+        
         
     }
 
@@ -64,7 +68,7 @@ public class Player_Movement : MonoBehaviour
         Move.Disable();
         Dash.Disable();
         Interaction.Disable();
-        Attack.Disable();
+        
     }
     private void Awake()
     {
@@ -82,12 +86,12 @@ public class Player_Movement : MonoBehaviour
     {
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
-     Attack_Order = Mathf.Clamp(Attack_Order,0,3);
+     
     }
     private void FixedUpdate()
     {
         Handle_State();
-        Debug.Log(Is_Dashing);
+        
     }
 
     private void Handle_State() {
@@ -120,11 +124,9 @@ public class Player_Movement : MonoBehaviour
                 else if (Dash.IsPressed() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
-                else if (Attack.IsPressed() && Can_Attack == true) {
-                    Player_rb.linearVelocity = Vector3.zero;
-                    Current_State = Player_States.Attack;
+                
 
-                }
+                
 
                 break;
 

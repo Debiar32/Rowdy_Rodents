@@ -1,17 +1,34 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player_Attack_Manager : MonoBehaviour
 {
+
+    
+     [Header("Attack")]
+    [SerializeField]  InputAction Attack;
+    [SerializeField] InputAction Heavy_Attack;
+    
+    [SerializeField] public bool is_Attacking = false;
+    [SerializeField] public bool Can_Attack = true;
+    [SerializeField] private float Delay_Between_Attacks;
+    [SerializeField] private float Attack_Cooldown;
+                     public int Attack_Order = 0; 
+     
+     
     [SerializeField] private Transform Attack_ref;
     [SerializeField] private Player_Movement player_movement;
-    [SerializeField] private int Attack_Order = 0;
+   
     [SerializeField] private TrailRenderer Slash_Effect;
     [SerializeField] private Rigidbody Player_Rb;
     [SerializeField] private TextMeshProUGUI Debug_text;
     [SerializeField] private Health_System Enemy_Health;
-    [SerializeField] private GameObject[] Detected_Enemies;
+    [SerializeField] private Collider[] Detected_Enemies;
+    [SerializeField] private LayerMask Enemy;
+
+
 
      
     public enum Attack_States
@@ -23,18 +40,29 @@ public class Player_Attack_Manager : MonoBehaviour
 
     }
     public Attack_States Current_Attack_State = Attack_States.Idle;
+
+    private void OnEnable()
+    {
+        Attack.Enable();
+        Heavy_Attack.Enable();
+    }
+    private void OnDisable()
+    {
+        Attack.Disable();
+        Heavy_Attack.Disable();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
-        Slash_Effect.gameObject.SetActive(false);
+        
 
     }
     private void Awake()
     {
         player_movement = GetComponent<Player_Movement>();
         Player_Rb = GetComponent<Rigidbody>();
-        
+        Slash_Effect.gameObject.SetActive(false);
 
     }
 
@@ -44,16 +72,28 @@ public class Player_Attack_Manager : MonoBehaviour
         
     }
 
+    void FixedUpdate()
+    {
+        if (player_movement.Current_State == Player_Movement.Player_States.Idle || player_movement.Current_State == Player_Movement.Player_States.Run) {
+            Can_Attack = true;   
+        }
+    }
+
     private void Handle_Attacks() {
 
         switch (Current_Attack_State)
         {
                 case Attack_States.Idle:
                     Debug_text.text = "Idling";
+                    if (Can_Attack == true && Attack.IsInProgress()) {
+                        
+                    }
+                    
                     break;
 
                 case Attack_States.Basic_Slash_Glave:
                     Debug_text.text = "Basic_Slash";
+                    
                     break;
 
 
@@ -67,9 +107,11 @@ public class Player_Attack_Manager : MonoBehaviour
 
     }
 
-    private void Slash(float range) 
-    { 
-        Detected_Enemies 
+    private void calculate_Attack(float range, float damage) 
+    {
+
+        Detected_Enemies = Physics.OverlapSphere(Attack_ref.position,range,Enemy);
+        
     
     }
 }
