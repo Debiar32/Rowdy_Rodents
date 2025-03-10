@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Cam_Pivot
+  - Enemy
   layers:
   - Default
   - TransparentFX
