@@ -61,7 +61,13 @@ public class Health_System : MonoBehaviour
 
         UpdateHealthBar();
 
-        if(current_health <=0)
+        EnemyNew_Logic enemyLogic = GetComponent<EnemyNew_Logic>();
+        if (enemyLogic != null)
+        {
+            enemyLogic.Stun(0.2f);
+        }
+
+        if (current_health <=0)
         {
             SpawnBubbles();
             Dead();
