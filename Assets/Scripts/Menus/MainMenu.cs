@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
+    [Header("All Canvas Assets Menu")]
     public GameObject saveSlotCanvas, optionsCanvas, creditsCanvas;
     public GameObject titleScreenCanvas;
+
+    public MenuNavigationHandler menuNav;
 
     private void Start()
     {
@@ -18,18 +22,26 @@ public class MainMenu : MonoBehaviour
     {
         gameObject.SetActive(false);
         saveSlotCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuNav.playFirstButton);
+
+
     }
 
     public void OpenOptions()
     {
         gameObject.SetActive(false);
         optionsCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuNav.optionsFirstButton);
     }
 
     public void OpenCredits()
     {
         gameObject.SetActive(false);
         creditsCanvas.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuNav.creditsFirstButton);
     }
 
     public void BackToTitleScreen()
@@ -42,4 +54,5 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+
 }
