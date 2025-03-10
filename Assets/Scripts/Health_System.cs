@@ -14,7 +14,13 @@ public class Health_System : MonoBehaviour
         current_health -= damage;
         Debug.Log(gameObject.name + "took damage equal to:" + damage + ". Updated hp: " + current_health);
 
-        if(current_health <=0)
+        EnemyNew_Logic enemyLogic = GetComponent<EnemyNew_Logic>();
+        if (enemyLogic != null)
+        {
+            enemyLogic.Stun(0.2f);
+        }
+
+        if (current_health <=0)
         {
             Dead();
         }

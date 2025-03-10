@@ -12,10 +12,12 @@ public class EnemyNew_Logic : MonoBehaviour
 
     [SerializeField] private GameObject Target; // Player target
     private NavMeshAgent agent;
+    public float Enemy_Attack_Duration = 1f;
 
     // Attack-related variables
     private bool isAttacking = false;
     private bool canAttack = true;
+    private bool isStunned = false;
     public GameObject attackIndicator; // Small sphere to show attack area
     public GameObject attackRangeCollider; // Collider that detects player in attack range
 
@@ -35,6 +37,8 @@ public class EnemyNew_Logic : MonoBehaviour
     {
         // Get distance between enemy and player
         float distanceToPlayer = Vector3.Distance(transform.position, Target.transform.position);
+        if (isStunned) return; // If stunned, skip movement logic
+
 
         // **General Detection Range**: Detect player and try to move toward them
         if (distanceToPlayer <= General_Detection_Range)
@@ -93,7 +97,7 @@ public class EnemyNew_Logic : MonoBehaviour
         }
 
         // Wait for 2 seconds before hiding the attack range collider
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(Enemy_Attack_Duration);
 
         // Hide the attack range collider
         attackRangeCollider.SetActive(false);
@@ -105,4 +109,18 @@ public class EnemyNew_Logic : MonoBehaviour
 
         isAttacking = false; // Attack has finished, ready for the next one
     }
+    public void Stun(float duration)
+    {
+        StartCoroutine(StunCoroutine(duration));
+    }
+
+    private IEnumerator StunCoroutine(float duration)
+    {
+        isStunned = true;
+        agent.isStopped = true; // Stop movement
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+        agent.isStopped = false; // Resume movement
+    }
 }
+

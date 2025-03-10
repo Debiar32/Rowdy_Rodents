@@ -1,5 +1,7 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Attack_Manager : MonoBehaviour
 {
@@ -9,19 +11,21 @@ public class Player_Attack_Manager : MonoBehaviour
     public Transform Attack_Point; 
     public Vector3 Attack_Size = new Vector3(1.5f, 1f, 1.5f); 
     public LayerMask Enemy_Layer; 
-    public float Attack_Cooldown = 0.6f; 
+    public float Attack_Cooldown = 0.6f;
+    public int Nbr_Attacks = 0;
+    public int Max_Attacks = 2;
 
     private bool Is_Attacking = false;
     private bool Is_Cooldown = false;
 
     private GameObject attackVisual;
-
     public void Perform_Attack()
     {
         
         if (!Is_Attacking && !Is_Cooldown)
         {
             StartCoroutine(Attack_Coroutine());
+            Nbr_Attacks += 1;
         }
     }
 
@@ -70,6 +74,14 @@ public class Player_Attack_Manager : MonoBehaviour
         yield return new WaitForSeconds(Attack_Cooldown);
 
         Is_Cooldown = false;
+
+        if (Nbr_Attacks == Max_Attacks)
+        {
+            Is_Cooldown = true;
+            yield return new WaitForSeconds(Attack_Cooldown * 4);
+            Is_Cooldown = false;
+            Nbr_Attacks = 0;
+        }
     }
 
     private void OnDrawGizmos()
@@ -79,5 +91,9 @@ public class Player_Attack_Manager : MonoBehaviour
             Gizmos.color = Color.red;
             Gizmos.DrawWireCube(Attack_Point.position, Attack_Size);
         }
+    }
+    private void Update()
+    {
+        
     }
 }
