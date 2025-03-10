@@ -1940,7 +1940,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 526513477}
-  - component: {fileID: 526513483}
   - component: {fileID: 526513482}
   - component: {fileID: 526513481}
   - component: {fileID: 526513480}
@@ -1961,8 +1960,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 526513476}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -5.829572, y: -4.034116, z: 10.09}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -3.999578}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1970,7 +1969,7 @@ Transform:
   - {fileID: 472059955}
   - {fileID: 776456275}
   - {fileID: 455671683}
-  m_Father: {fileID: 684393115}
+  m_Father: {fileID: 583748157}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &526513478
 MonoBehaviour:
@@ -2079,22 +2078,6 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
---- !u!114 &526513483
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526513476}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33251d0ea2a2342b48483f741bde05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move_Speed: 1.48
-  Chase_Distance: 16.97
-  Target: {fileID: 0}
-  Attack_Damage: 20
 --- !u!1 &547036038
 GameObject:
   m_ObjectHideFlags: 0
@@ -2212,7 +2195,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 583748157}
-  - component: {fileID: 583748156}
   - component: {fileID: 583748158}
   - component: {fileID: 583748160}
   - component: {fileID: 583748159}
@@ -2225,22 +2207,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &583748156
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583748155}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33251d0ea2a2342b48483f741bde05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move_Speed: 1.48
-  Chase_Distance: 16.97
-  Target: {fileID: 0}
-  Attack_Damage: 20
 --- !u!4 &583748157
 Transform:
   m_ObjectHideFlags: 0
@@ -2258,6 +2224,10 @@ Transform:
   - {fileID: 2013865844}
   - {fileID: 1803788203}
   - {fileID: 232021055}
+  - {fileID: 1578780986}
+  - {fileID: 938762806}
+  - {fileID: 1246692148}
+  - {fileID: 526513477}
   m_Father: {fileID: 684393115}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!136 &583748158
@@ -2321,7 +2291,7 @@ MonoBehaviour:
   Move_Speed_Run: 6
   General_Detection_Range: 30
   Walk_Detection_Range: 6
-  Attack_Detection_Range: 2
+  Attack_Detection_Range: 3
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
   Attack_Damage: 20
@@ -2744,10 +2714,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 583748157}
-  - {fileID: 1578780986}
-  - {fileID: 938762806}
-  - {fileID: 526513477}
-  - {fileID: 1246692148}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
@@ -3647,7 +3613,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 938762806}
-  - component: {fileID: 938762812}
   - component: {fileID: 938762811}
   - component: {fileID: 938762810}
   - component: {fileID: 938762809}
@@ -3668,8 +3633,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 938762805}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -2.68, y: -4.034116, z: 6.090422}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -3.1495721, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3677,7 +3642,7 @@ Transform:
   - {fileID: 50169979}
   - {fileID: 304518320}
   - {fileID: 267692963}
-  m_Father: {fileID: 684393115}
+  m_Father: {fileID: 583748157}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &938762807
 MonoBehaviour:
@@ -3786,22 +3751,6 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
---- !u!114 &938762812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 938762805}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33251d0ea2a2342b48483f741bde05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move_Speed: 1.48
-  Chase_Distance: 16.97
-  Target: {fileID: 0}
-  Attack_Damage: 20
 --- !u!1 &945288003
 GameObject:
   m_ObjectHideFlags: 0
@@ -4610,7 +4559,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1246692148}
-  - component: {fileID: 1246692154}
   - component: {fileID: 1246692153}
   - component: {fileID: 1246692152}
   - component: {fileID: 1246692151}
@@ -4631,8 +4579,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1246692147}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -5.829572, y: -4.034116, z: 2.96}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 3.1304226}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4640,7 +4588,7 @@ Transform:
   - {fileID: 547036039}
   - {fileID: 225156028}
   - {fileID: 1620408893}
-  m_Father: {fileID: 684393115}
+  m_Father: {fileID: 583748157}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1246692149
 MonoBehaviour:
@@ -4749,22 +4697,6 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
---- !u!114 &1246692154
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1246692147}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33251d0ea2a2342b48483f741bde05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move_Speed: 1.48
-  Chase_Distance: 16.97
-  Target: {fileID: 0}
-  Attack_Damage: 20
 --- !u!1001 &1366802405
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5116,7 +5048,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1578780986}
-  - component: {fileID: 1578780992}
   - component: {fileID: 1578780991}
   - component: {fileID: 1578780990}
   - component: {fileID: 1578780989}
@@ -5137,8 +5068,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578780985}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
-  m_LocalPosition: {x: -14.88, y: -4.034116, z: 6.090422}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 9.050428, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -5146,7 +5077,7 @@ Transform:
   - {fileID: 931335864}
   - {fileID: 594687271}
   - {fileID: 290528137}
-  m_Father: {fileID: 684393115}
+  m_Father: {fileID: 583748157}
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!114 &1578780987
 MonoBehaviour:
@@ -5255,22 +5186,6 @@ CapsuleCollider:
   m_Height: 0.24
   m_Direction: 1
   m_Center: {x: 0, y: 0.64, z: 0}
---- !u!114 &1578780992
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578780985}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ec33251d0ea2a2342b48483f741bde05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Move_Speed: 1.48
-  Chase_Distance: 16.97
-  Target: {fileID: 0}
-  Attack_Damage: 20
 --- !u!1001 &1599164247
 PrefabInstance:
   m_ObjectHideFlags: 0
