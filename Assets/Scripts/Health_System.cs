@@ -6,14 +6,23 @@ public class Health_System : MonoBehaviour
     private float current_health;
     public bool Is_Player = false;
     public bool Is_Invincible = false;
+    public bool Is_Dead = false;
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void Awake()
     {
         current_health = max_health;
+        
+    }
+    void Start()
+    {
+       
         if (gameObject.CompareTag("Player")) { 
             Is_Player = true;
         }
+        Is_Dead = false;
     }
+
     public void Deal_Damage(float damage)
     {
         
@@ -31,8 +40,17 @@ public class Health_System : MonoBehaviour
     }
     public void Dead()
     {
-        Debug.Log(gameObject.name + "was destroyed");
+        /*Debug.Log(gameObject.name + "was destroyed");
         Destroy(gameObject);
+        */
+
+        if (Is_Player)
+        {
+            Is_Dead = true;
+            
+
+        }
+        else gameObject.SetActive(false);
     }
     public void heal(float heal_amount)
     {

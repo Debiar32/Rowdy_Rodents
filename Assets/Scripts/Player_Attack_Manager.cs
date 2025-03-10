@@ -38,7 +38,8 @@ public class Player_Attack_Manager : MonoBehaviour
         Idle,
         Basic_Slash_Glave,
         Heavy_Strike_Glave,
-        Dash_Strike_Glave
+        Dash_Strike_Glave,
+        Exit_Attack
 
     }
     public Attack_States Current_Attack_State = Attack_States.Idle;
@@ -79,6 +80,7 @@ public class Player_Attack_Manager : MonoBehaviour
         if (player_movement.Current_State == Player_Movement.Player_States.Idle || player_movement.Current_State == Player_Movement.Player_States.Run) {
             Can_Attack = true;   
         }
+        else Can_Attack = false;
         Handle_Attacks();
     }
 
@@ -88,9 +90,12 @@ public class Player_Attack_Manager : MonoBehaviour
         {
                 case Attack_States.Idle:
                     Debug_text.text = "Idling";
-                    if (Can_Attack == true && Attack.IsInProgress()) {
+                if (Can_Attack == true && Attack.IsInProgress()) {
                     Current_Attack_State = Attack_States.Basic_Slash_Glave;
-                    }
+                }
+                else if (Can_Attack == true && Heavy_Attack.IsInProgress()) {
+                    Current_Attack_State = Attack_States.Heavy_Strike_Glave;
+                }
                     
                     break;
 
@@ -101,7 +106,7 @@ public class Player_Attack_Manager : MonoBehaviour
                      }
                     Active_Attack = StartCoroutine(Basic_Slash());
                     
-                    if (Can_Attack == false && ! Attack.IsInProgress()) {
+                    if (Can_Attack == false && ! Attack.WasPerformedThisFrame()) {
                         Current_Attack_State = Attack_States.Idle;
                         }
                     
@@ -122,7 +127,18 @@ public class Player_Attack_Manager : MonoBehaviour
     {
 
         Detected_Enemies = Physics.OverlapSphere(Attack_ref.position,range,Enemy);
+
+        foreach (Collider enemy in Detected_Enemies)
+        {
+            Enemy_Health = enemy.GetComponent<Health_System>();
+
+            enemy.gameObject.SetActive(false);
+        }
         
+    
+    }
+    public void Knockback(Rigidbody rb, float Knockback_Power) {
+        rb.AddForce(rb.gameObject.transform.forward, ForceMode.Impulse);
     
     }
 
@@ -130,6 +146,6 @@ public class Player_Attack_Manager : MonoBehaviour
         yield return new WaitForSeconds(.3f);
         Debug.Log("Slashed");
 
-
+        
     }
 }

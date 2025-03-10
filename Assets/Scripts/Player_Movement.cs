@@ -1,6 +1,5 @@
 
 using System.Collections;
-
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -31,6 +30,9 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] private bool Can_Interact;
 
     Player_Attack_Manager Attack_Manager;
+
+    private Health_System health;
+
     /*
     [Header("Attack")]
     [SerializeField]  InputAction Attack;
@@ -74,6 +76,7 @@ public class Player_Movement : MonoBehaviour
     {
         Player_rb = GetComponent<Rigidbody>();
         Attack_Manager = GetComponent<Player_Attack_Manager>();
+        health = GetComponent<Health_System>();
         
     }
     void Start()
@@ -109,10 +112,14 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Run;
 
                 }
+                else if (health.Is_Dead)
+                {
+                    Current_State = Player_States.Die;
+                }
                 break;
 
             case Player_States.Run:
-                
+
                 debug_text.text = "Run";
                 Movement();
 
@@ -124,9 +131,13 @@ public class Player_Movement : MonoBehaviour
                 else if (Dash.IsPressed() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
-                
+                else if (health.Is_Dead == true)
+                {
+                    Current_State = Player_States.Die;
+                }
 
-                
+
+
 
                 break;
 
@@ -135,6 +146,10 @@ public class Player_Movement : MonoBehaviour
                 StopAllCoroutines();
                 StartCoroutine(Dashing());
                 Current_State = Player_States.Run;
+                if (health.Is_Dead == true)
+                {
+                    Current_State = Player_States.Die;
+                }
                 
                 
                 break;
@@ -142,11 +157,21 @@ public class Player_Movement : MonoBehaviour
             case Player_States.Attack:
                 gp.SetMotorSpeeds(10, 10);
                 debug_text.text = "Attack";
+                if (health.Is_Dead == true) 
+                {
+                    Current_State = Player_States.Die;
+                
+                }
+
                 
                 break;
 
             case Player_States.Interaction:
                 debug_text.text = "Interact";
+                if (health.Is_Dead == true)
+                {
+                    Current_State = Player_States.Die;
+                }
                 break;
 
             case Player_States.Die:
@@ -155,6 +180,8 @@ public class Player_Movement : MonoBehaviour
 
             case Player_States.Respawn:
                 debug_text.text = "Respawn";
+                health.Is_Dead = false;
+                Current_State = Player_States.Idle;
                 break;
         }
     
