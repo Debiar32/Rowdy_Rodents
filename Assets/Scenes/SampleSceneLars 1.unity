@@ -2053,6 +2053,7 @@ MonoBehaviour:
   Attack_Detection_Range: 2
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
+  Attack_Damage: 20
   attackIndicator: {fileID: 1076574427}
   attackRangeCollider: {fileID: 472059954}
 --- !u!136 &526513482
@@ -2323,6 +2324,7 @@ MonoBehaviour:
   Attack_Detection_Range: 2
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
+  Attack_Damage: 20
   attackIndicator: {fileID: 1911246598}
   attackRangeCollider: {fileID: 2013865843}
 --- !u!54 &583748162
@@ -2364,7 +2366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3305cc87489a57e409f59d599b79eae4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Max_Health: 6000
+  Max_Health: 200
 --- !u!1 &594687270
 GameObject:
   m_ObjectHideFlags: 0
@@ -2721,7 +2723,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 684393115}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: All Enemy Placements
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3758,6 +3760,7 @@ MonoBehaviour:
   Attack_Detection_Range: 2
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
+  Attack_Damage: 20
   attackIndicator: {fileID: 679385660}
   attackRangeCollider: {fileID: 50169978}
 --- !u!136 &938762811
@@ -4720,6 +4723,7 @@ MonoBehaviour:
   Attack_Detection_Range: 2
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
+  Attack_Damage: 20
   attackIndicator: {fileID: 1804914995}
   attackRangeCollider: {fileID: 547036038}
 --- !u!136 &1246692153
@@ -5225,6 +5229,7 @@ MonoBehaviour:
   Attack_Detection_Range: 2
   Target: {fileID: 0}
   Enemy_Attack_Duration: 0.2
+  Attack_Damage: 20
   attackIndicator: {fileID: 773312148}
   attackRangeCollider: {fileID: 931335863}
 --- !u!136 &1578780991
@@ -6087,7 +6092,7 @@ MonoBehaviour:
   breathingSpawnPoint: {fileID: 2142243953}
   minBubbleWaitTime: 4
   maxBubbleWaitTime: 8
-  max_health: 2000
+  max_health: 100
 --- !u!1 &1803788202
 GameObject:
   m_ObjectHideFlags: 0

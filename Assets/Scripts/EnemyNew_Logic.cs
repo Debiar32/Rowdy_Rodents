@@ -13,6 +13,7 @@ public class EnemyNew_Logic : MonoBehaviour
     [SerializeField] private GameObject Target; // Player target
     private NavMeshAgent agent;
     public float Enemy_Attack_Duration = 1f;
+    public float Attack_Damage = 20f;
 
     // Attack-related variables
     private bool isAttacking = false;
@@ -93,6 +94,12 @@ public class EnemyNew_Logic : MonoBehaviour
             if (hitCollider.CompareTag("Player"))
             {
                 Debug.Log("Hit!"); // Player is inside the attack range
+                Health_System target_hp = hitCollider.GetComponent<Health_System>();
+                if (target_hp != null)
+                {
+                    target_hp.Deal_Damage(Attack_Damage);
+                    Debug.Log("Hit: " +gameObject.name + " for " + Attack_Damage);
+                }
             }
         }
 
