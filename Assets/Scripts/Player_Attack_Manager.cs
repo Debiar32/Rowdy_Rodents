@@ -15,7 +15,8 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] public bool Can_Attack = true;
     [SerializeField] private float Delay_Between_Attacks;
     [SerializeField] private float Attack_Cooldown;
-    [SerializeField]  public int Attack_Order = 0; 
+    [SerializeField]  public int Attack_Order = 0;
+    [SerializeField] public int Max_Attack_Count = 3;
      
      
     [SerializeField] private Transform Attack_ref;
@@ -36,10 +37,13 @@ public class Player_Attack_Manager : MonoBehaviour
     public enum Attack_States
     {
         Idle,
-        Basic_Slash_Glave,
-        Heavy_Strike_Glave,
-        Dash_Strike_Glave,
-        Exit_Attack
+        Attacking,
+        Heavy_Attack,
+        Attack_Combiner
+
+
+
+        
 
     }
     public Attack_States Current_Attack_State = Attack_States.Idle;
@@ -58,7 +62,6 @@ public class Player_Attack_Manager : MonoBehaviour
     void Start()
     {
 
-        
 
     }
     private void Awake()
@@ -72,14 +75,15 @@ public class Player_Attack_Manager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        Attack_Order = Mathf.Clamp(Attack_Order, 0, Max_Attack_Count);
     }
 
     void FixedUpdate()
     {
         if (player_movement.Current_State == Player_Movement.Player_States.Idle || player_movement.Current_State == Player_Movement.Player_States.Run) {
             Can_Attack = true;   
-        }
+           }
         else Can_Attack = false;
         Handle_Attacks();
     }
@@ -89,29 +93,32 @@ public class Player_Attack_Manager : MonoBehaviour
         switch (Current_Attack_State)
         {
                 case Attack_States.Idle:
-                    Debug_text.text = "Idling";
-                if (Can_Attack == true && Attack.IsInProgress()) {
-                    Current_Attack_State = Attack_States.Basic_Slash_Glave;
-                }
-                else if (Can_Attack == true && Heavy_Attack.IsInProgress()) {
-                    Current_Attack_State = Attack_States.Heavy_Strike_Glave;
-                }
-                    
-                    break;
+                 if (Attack_Order < Max_Attack_Count) { 
+                    Attack_Order = Max_Attack_Count;
+                    }
 
-                case Attack_States.Basic_Slash_Glave:
-                    Debug_text.text = "Basic_Slash";
-                    if (Active_Attack != null) {
-                     StopCoroutine(Active_Attack);
-                     }
-                    Active_Attack = StartCoroutine(Basic_Slash());
-                    
-                    if (Can_Attack == false && ! Attack.WasPerformedThisFrame()) {
-                        Current_Attack_State = Attack_States.Idle;
-                        }
-                    
-                    break;
+                    if (Attack.IsInProgress()) 
+                    {
+                    Current_Attack_State = Attack_States.Attacking;
+                    }
+                break;
 
+                case Attack_States.Attacking:
+                    Attack_Order -= 1;
+                    if (Attack_Order > 0)
+                    {
+                         Debug_text.text = "Attack";
+                         Glave_Slash();
+                    }
+
+                
+                
+
+
+                
+                break;
+
+                
 
         }
     }
@@ -119,7 +126,7 @@ public class Player_Attack_Manager : MonoBehaviour
     IEnumerator Glave_Slash()
     {
         Debug.Log("SLASH!!");
-        yield return new WaitForSeconds(.2f);
+        yield return new WaitForSeconds(.5f);
 
     }
 

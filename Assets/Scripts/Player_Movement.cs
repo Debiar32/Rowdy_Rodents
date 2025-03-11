@@ -18,6 +18,7 @@ public class Player_Movement : MonoBehaviour
     Vector2 Move_Vector;
     [SerializeField] public float Move_Speed;
     [SerializeField] private float Turning_Speed;
+    [SerializeField] private bool Can_Move;
 
     [Header("Dashing")]
     [SerializeField] InputAction Dash;
@@ -90,10 +91,12 @@ public class Player_Movement : MonoBehaviour
      Move_Vector =  Move.ReadValue<Vector2>();
      Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
      
+     
     }
     private void FixedUpdate()
     {
         Handle_State();
+        
         
     }
 
