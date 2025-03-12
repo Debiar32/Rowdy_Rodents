@@ -7,7 +7,6 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Health Bar")]
     public Image hpbar;
-
     public float Max_Health = 100f;
     private float Current_Health;
 
@@ -17,6 +16,9 @@ public class EnemyHealth : MonoBehaviour
     public Transform DamageIndicatorAttachPoint; // Point to attach the damage indicator (can be chosen in the inspector)
     public Transform DamageParticlesAttachPoint; // Point to attach the particle system (can be chosen in the inspector)
     private Vector3 lastSpawnPositionenem;
+
+    [Header("Death Effect")]
+    public ParticleSystem DeathEffect;
 
     void Start()
     {
@@ -119,6 +121,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         // Handle the enemy's death here
+        Instantiate(DeathEffect, transform.position, Quaternion.identity);
         Debug.Log(gameObject.name + " has died.");
         Destroy(gameObject); // Destroy the enemy object
     }

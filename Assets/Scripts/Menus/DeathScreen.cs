@@ -10,19 +10,6 @@ public class DeathScreen : MonoBehaviour
     {
         deathScreenUI.SetActive(false);
     }
-
-    void Update()
-    {
-        if (Keyboard.current.fKey.wasPressedThisFrame)
-        {
-            // If the death screen is not active, set it to active
-            if (!deathScreenUI.activeSelf)
-            {
-                deathScreenUI.SetActive(true);
-            }
-        }
-    }
-
     public void ShowDeathScreen()
     {
         deathScreenUI.SetActive(true);
@@ -31,13 +18,16 @@ public class DeathScreen : MonoBehaviour
 
     public void RestartGame()
     {
+        deathScreenUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void ExitToMainMenu()
     {
+        //deathScreenUI.SetActive(false);
         Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene("RR_Main_Menu");
+        deathScreenUI.SetActive(false);
     }
 }

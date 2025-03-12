@@ -37,35 +37,38 @@ public class EnemyNew_Logic : MonoBehaviour
     void Update()
     {
         // Get distance between enemy and player
-        float distanceToPlayer = Vector3.Distance(transform.position, Target.transform.position);
-        if (isStunned) return; // If stunned, skip movement logic
-
-
-        // **General Detection Range**: Detect player and try to move toward them
-        if (distanceToPlayer <= General_Detection_Range)
+        if (Target != null)
         {
-            agent.destination = Target.transform.position;
+            float distanceToPlayer = Vector3.Distance(transform.position, Target.transform.position);
+            if (isStunned) return; // If stunned, skip movement logic
 
-            // **Walk Detection Range**: Move slower when close to player (walking speed)
-            if (distanceToPlayer <= Walk_Detection_Range)
+
+            // **General Detection Range**: Detect player and try to move toward them
+            if (distanceToPlayer <= General_Detection_Range)
             {
-                agent.speed = Move_Speed_Walk; // Slow down the enemy
+                agent.destination = Target.transform.position;
+
+                // **Walk Detection Range**: Move slower when close to player (walking speed)
+                if (distanceToPlayer <= Walk_Detection_Range)
+                {
+                    agent.speed = Move_Speed_Walk; // Slow down the enemy
+                }
+                else
+                {
+                    agent.speed = Move_Speed_Run; // Speed up the enemy
+                }
+
+                // **Attack Range**: If the player is in range, initiate the attack sequence
+                if (distanceToPlayer <= Attack_Detection_Range && canAttack)
+                {
+                    StartCoroutine(Attack());
+                }
             }
             else
             {
-                agent.speed = Move_Speed_Run; // Speed up the enemy
+                // Stop moving if player is outside of detection range
+                agent.destination = transform.position;
             }
-
-            // **Attack Range**: If the player is in range, initiate the attack sequence
-            if (distanceToPlayer <= Attack_Detection_Range && canAttack)
-            {
-                StartCoroutine(Attack());
-            }
-        }
-        else
-        {
-            // Stop moving if player is outside of detection range
-            agent.destination = transform.position;
         }
     }
 

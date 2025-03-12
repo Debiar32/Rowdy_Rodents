@@ -802,6 +802,7 @@ MonoBehaviour:
   DamageParticlesPrefab: {fileID: 7676057185325709055, guid: 2c745240cca003a4a8dae30ef509aad3, type: 3}
   DamageIndicatorAttachPoint: {fileID: 8306318431839032491}
   DamageParticlesAttachPoint: {fileID: 8306318431839032491}
+  DeathEffect: {fileID: 7676057185325709055, guid: 58db375e30e542e4db13c69a99ecea9b, type: 3}
 --- !u!1 &6062385967393350917
 GameObject:
   m_ObjectHideFlags: 0
@@ -814,6 +815,7 @@ GameObject:
   - component: {fileID: 984905603229743568}
   - component: {fileID: 5619793985844080057}
   - component: {fileID: 4058189706091690666}
+  - component: {fileID: 908977684988153115}
   m_Layer: 6
   m_Name: EnemyCanvas
   m_TagString: Untagged
@@ -904,6 +906,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &908977684988153115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6062385967393350917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1aea93471696e4a43a18afdc55c76433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6124940763051001216
 GameObject:
   m_ObjectHideFlags: 0

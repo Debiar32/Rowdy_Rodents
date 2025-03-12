@@ -6,6 +6,8 @@ public class Health_System : MonoBehaviour
     [Header("Health Bar")]
     public Slider slider;
 
+    public DeathScreen DeathScreen;
+
     [Header("Bubble Effect")]
     public GameObject bubbleEffectPrefab;
     public Transform effectSpawnPoint;
@@ -75,6 +77,7 @@ public class Health_System : MonoBehaviour
     public void Dead()
     {
         Debug.Log(gameObject.name + "was destroyed");
+        DeathScreen.ShowDeathScreen();
         Destroy(gameObject);
 
     }
@@ -143,6 +146,14 @@ private void SpawnBubbles()
             // If bubbleEffectPrefab is null, destroy the GameObject this script is attached to
             Destroy(gameObject);
         }
+    }
+
+    public void HealPlayer(int amount)
+    {
+        current_health += amount; // Increase health
+        current_health = Mathf.Min(current_health, max_health); // Prevent overhealing
+        Debug.Log("Healed: " + amount + " HP. Current HP: " + current_health);
+        UpdateHealthBar();
     }
 
 
