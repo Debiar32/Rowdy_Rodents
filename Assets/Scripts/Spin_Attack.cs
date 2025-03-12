@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class SpinAttack : MonoBehaviour
 {
+    /*
     public float spinDamage = 30f;    // Damage dealt to enemies
     public float spinRadius = 2f;     // Range of the spin attack
     public float spinCooldown = 1.5f; // Cooldown before the next spin
@@ -68,4 +69,5 @@ public class SpinAttack : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spinRadius);
     }
+    */
 }

@@ -12,7 +12,6 @@ public class Health_System : MonoBehaviour
     private Vector3 lastSpawnPosition;
 
     [Header("Shake Effect")]
-    public ParticleSystem bubbles;
     public cameraShake cameraShake;
 
     [Header("Breathing")]
