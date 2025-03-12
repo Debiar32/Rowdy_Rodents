@@ -57,10 +57,11 @@ public class LoadingScreen : MonoBehaviour
             _target = i;
             loadingText.text = "Almost there... " + Mathf.FloorToInt(i * 100) + "%";
             yield return new WaitForSeconds(0.05f);  // Wait for a short period to create the illusion of a smooth transition
+            loadingText.text = "Almost there... 100%";
         }
 
         // Allow the scene to activate after a short delay
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2   );
         operation.allowSceneActivation = true;  // Activate the scene
     }
 }

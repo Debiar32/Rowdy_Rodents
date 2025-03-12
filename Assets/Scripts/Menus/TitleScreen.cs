@@ -1,11 +1,56 @@
+using System.Xml.Serialization;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 
 public class TitleScreen : MonoBehaviour
 {
-    public InputActionAsset actionAsset;  // Reference to the Input Action Asset
-    private InputActionMap mainMenuActions;  // The action map we use for main menu actions
-    private InputAction startGameAction;  // The action that listens for any key press
+    [Header("Base Navigation Setup")]
+    public MenuNavigationHandler menuNav;
+    public GameObject mainMenuCanvas;
+
+    public InputSystem_Actions TSControl;
+    private InputAction ts_start;
+
+    private void Awake()
+    {
+        TSControl = new InputSystem_Actions();
+    }
+
+    private void OnEnable()
+    {
+        ts_start = TSControl.UI.tsStart;
+        ts_start.Enable();
+        ts_start.performed += StartMainMenuScreen;
+    }
+
+    private void OnDisable()
+    {
+        ts_start.Disable();
+    }
+
+    private void StartMainMenuScreen(InputAction.CallbackContext context)
+    {
+        Invoke("ShowMainMenu", 2f);
+    }
+    private void ShowMainMenu()
+    {
+        gameObject.SetActive(false);  // Hide the title screen
+        mainMenuCanvas.SetActive(true);  // Show the main menu
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuNav.mainMenuFirstButton);
+    }
+
+}
+
+
+
+    /*
+    //public InputActionAsset actionAsset;  // Reference to the Input Action Asset
+    //private InputActionMap mainMenuActions;  // The action map we use for main menu actions
+    //private InputAction startGameAction;  // The action that listens for any key press
+
+    public MenuNavigationHandler menuNav;
 
     public GameObject mainMenuCanvas;
 
@@ -34,5 +79,8 @@ public class TitleScreen : MonoBehaviour
         // This will be triggered when any key is pressed (keyboard, mouse, or gamepad button)
         gameObject.SetActive(false);  // Hide the title screen
         mainMenuCanvas.SetActive(true);  // Show the main menu
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(menuNav.mainMenuFirstButton);
     }
 }
+    */
