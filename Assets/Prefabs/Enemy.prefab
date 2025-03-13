@@ -175,6 +175,7 @@ MonoBehaviour:
   Move_Speed: 1.48
   Chase_Distance: 16.97
   Target: {fileID: 0}
+  Attack_Damage: 20
 --- !u!136 &1163214570273302743
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -349,7 +350,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
