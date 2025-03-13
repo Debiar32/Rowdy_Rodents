@@ -126,7 +126,7 @@ public class Player_Movement : MonoBehaviour
 
     private void Movement()
     {
-        Player_rb.linearVelocity = new Vector3(Move_Vector.x, 0, Move_Vector.y) * Move_Speed;
+        Player_rb.linearVelocity = new Vector3(Move_Vector.x, 0, Move_Vector.y) * Time.fixedDeltaTime * Move_Speed;
         Quaternion To_Rot = Quaternion.LookRotation(new Vector3(Move_Vector.x, 0, Move_Vector.y), Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, To_Rot, Turning_Speed);
     }

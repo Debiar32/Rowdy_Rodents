@@ -5487,7 +5487,7 @@ MonoBehaviour:
       m_Action: Move
       m_Flags: 8
     m_Flags: 0
-  Move_Speed: 2
+  Move_Speed: 200
   Turning_Speed: 20
   Dash:
     m_Name: Dash
@@ -5614,7 +5614,7 @@ MonoBehaviour:
   breathingSpawnPoint: {fileID: 2142243953}
   minBubbleWaitTime: 4
   maxBubbleWaitTime: 8
-  max_health: 6000
+  max_health: 120
 --- !u!1 &1777840943
 GameObject:
   m_ObjectHideFlags: 0
