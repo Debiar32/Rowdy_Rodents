@@ -13,10 +13,11 @@ public class Player_SpinAttack : MonoBehaviour
 
     private bool isSpinning = false;
     private Player_Attack_Manager attackManager;
-
+    private Player_WaveAttack waveAttack;
     private void Awake()
     {
         attackManager = GetComponent<Player_Attack_Manager>();
+        waveAttack = GetComponent<Player_WaveAttack>();
     }
 
     private void OnEnable()
@@ -43,6 +44,10 @@ public class Player_SpinAttack : MonoBehaviour
         if (!isSpinning && attackManager != null && attackManager.Is_Cooldown && attackManager.Nbr_Attacks == attackManager.Max_Attacks)
         {
             StartCoroutine(SpinAttack());
+            if (waveAttack != null)
+            {
+                waveAttack.RegisterSpinAttack();
+            }
         }
     }
 

@@ -5340,6 +5340,7 @@ GameObject:
   - component: {fileID: 1777557974}
   - component: {fileID: 1777557975}
   - component: {fileID: 1777557976}
+  - component: {fileID: 1777557977}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5593,6 +5594,7 @@ MonoBehaviour:
   Nbr_Attacks: 0
   Max_Attacks: 2
   Attack_Reset_Time: 0.6
+  Is_Cooldown: 0
   CooldownImage: {fileID: 1235963436}
 --- !u!114 &1777557975
 MonoBehaviour:
@@ -5628,7 +5630,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca94df0ca36369d4eb6a9d1c38f532ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinRadius: 7
+  spinRadius: 5
   spinDuration: 0.5
   spinDamage: 30
   Enemy_Layer:
@@ -5649,6 +5651,42 @@ MonoBehaviour:
       m_Processors: 
       m_Groups: 
       m_Action: Spin
+      m_Flags: 0
+    m_Flags: 0
+--- !u!114 &1777557977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777557968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0efd140186513074daaa1bc1596d7abc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveRange: 10
+  waveAngle: 45
+  waveDamage: 50
+  waveDuration: 0.8
+  Enemy_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  WaveAttack:
+    m_Name: Wave Attack
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 1d004436-dd6a-4de3-8abc-71662b99a26c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: a3ed5e9a-a6d1-4907-9740-163fc169ad2a
+      m_Path: <Keyboard>/r
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Wave Attack
       m_Flags: 0
     m_Flags: 0
 --- !u!1 &1777840943
