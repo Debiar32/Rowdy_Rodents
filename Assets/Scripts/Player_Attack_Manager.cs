@@ -3,10 +3,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class Player_Attack_Manager : MonoBehaviour
 {
 
-
+    
     [Header("Inputs")]
     [SerializeField] InputAction Attack;
     [SerializeField] InputAction Heavy_Attack;
