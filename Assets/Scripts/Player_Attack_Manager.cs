@@ -106,7 +106,7 @@ public class Player_Attack_Manager : MonoBehaviour
                     Attack_Order = Max_Attack_Count;
                 }
 
-                if (Attack.IsInProgress())
+                if (Attack.IsInProgress() && Can_Attack == true)
                 {
                     Current_Attack_State = Attack_States.Attacking;
                 }

@@ -1034,6 +1034,7 @@ MonoBehaviour:
   max_health: 200
   Is_Player: 0
   Is_Invincible: 0
+  Is_Dead: 0
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1589,7 +1590,7 @@ GameObject:
   m_Layer: 0
   m_Name: Attack_fx
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -1653,11 +1654,11 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 0.3
+  m_Time: 0.16
   m_PreviewTimeScale: 1
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 1
+    widthMultiplier: 1.0508785
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -2204,6 +2205,7 @@ MonoBehaviour:
     m_Flags: 0
   Move_Speed: 160
   Turning_Speed: 18
+  Can_Move: 0
   Dash:
     m_Name: Dash
     m_Type: 1
@@ -2326,6 +2328,7 @@ MonoBehaviour:
   Delay_Between_Attacks: 0
   Attack_Cooldown: 0
   Attack_Order: 0
+  Max_Attack_Count: 3
   Attack_ref: {fileID: 0}
   player_movement: {fileID: 0}
   Slash_Effect: {fileID: 1385455740}
@@ -2352,6 +2355,7 @@ MonoBehaviour:
   max_health: 200
   Is_Player: 0
   Is_Invincible: 0
+  Is_Dead: 0
 --- !u!1 &1803788202
 GameObject:
   m_ObjectHideFlags: 0
