@@ -26,13 +26,19 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] public bool Is_Dashing = false;
     [SerializeField] private Image Dash_Cooldown_UI; // UI Element for cooldown
 
+    public Player_Attack_Manager attacker;
+
     [Header("Interacting")]
     [SerializeField] InputAction Interaction;
     [SerializeField] private bool Can_Interact;
 
+    public Enemy_Spawner spawn;
+
     [Header("Attack")]
     [SerializeField] InputAction Attack;
     Player_Attack_Manager Attack_Manager;
+
+    [SerializeField] private Enemy_Spawner spawner;
 
     public enum Player_States
     {
@@ -51,11 +57,13 @@ public class Player_Movement : MonoBehaviour
         Dash_Cooldown_UI.fillAmount = 0;
     }
 
+
     private void OnEnable()
     {
         Move.Enable();
         Dash.Enable();
         Interaction.Enable();
+        //Interaction.performed += On_Interaction;
         Attack.Enable();
     }
 
@@ -64,6 +72,7 @@ public class Player_Movement : MonoBehaviour
         Move.Disable();
         Dash.Disable();
         Interaction.Disable();
+        //Interaction.performed -= On_Interaction;
         Attack.Disable();
     }
 
@@ -129,7 +138,8 @@ public class Player_Movement : MonoBehaviour
         Player_rb.linearVelocity = new Vector3(Move_Vector.x, 0, Move_Vector.y) * Time.fixedDeltaTime * Move_Speed;
         Quaternion To_Rot = Quaternion.LookRotation(new Vector3(Move_Vector.x, 0, Move_Vector.y), Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, To_Rot, Turning_Speed);
-    }
+    
+        }
 
     private IEnumerator Dashing()
     {
@@ -148,11 +158,28 @@ public class Player_Movement : MonoBehaviour
         Dash_Cooldown_UI.fillAmount = 0; // Cooldown complete
         StartCoroutine(End_Dash());
     }
-
+    /*private void On_Interaction(InputAction.CallbackContext context)
+    {
+        
+        if (spawner != null)
+        {
+            Debug.Log("Interaction; enemies let's go");
+            spawner.Activate_Spawn(transform);
+        }
+        else
+        {
+            Debug.Log("No spawner detected");
+        }
+    }*/
     private IEnumerator End_Dash()
     {
         yield return new WaitForEndOfFrame();
         Is_Dashing = false;
         Current_State = Player_States.Idle;
+    
+    
     }
+        
+
+
 }

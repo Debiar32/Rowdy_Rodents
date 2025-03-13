@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleSceneLars 1.unity
     guid: 1c2d33439331d5e45963318490620847
+  - enabled: 1
+    path: Assets/Scenes/Test_n_Chill.unity
+    guid: fbb82485e615b1548b296df167e13eba
   - enabled: 0
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 9f09cbfbef73e1b47b6a625becf7ebbb
