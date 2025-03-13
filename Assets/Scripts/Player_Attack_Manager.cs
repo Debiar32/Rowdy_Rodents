@@ -7,10 +7,11 @@ public class Player_Attack_Manager : MonoBehaviour
 {
 
 
-    [Header("Attack")]
+    [Header("Inputs")]
     [SerializeField] InputAction Attack;
     [SerializeField] InputAction Heavy_Attack;
 
+    [Header("Variables")]
     [SerializeField] public bool is_Attacking = false;
     [SerializeField] public bool Can_Attack = true;
     [SerializeField] private float Delay_Between_Attacks;
@@ -18,7 +19,7 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] public int Attack_Order = 0;
     [SerializeField] public int Max_Attack_Count = 3;
 
-
+    [Header("References")]
     [SerializeField] private Transform Attack_ref;
     [SerializeField] private Player_Movement player_movement;
 
