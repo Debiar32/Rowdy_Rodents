@@ -119,7 +119,8 @@ public class Player_Attack_Manager : MonoBehaviour
                     Debug_text.text = "Attack";
                     Glave_Slash();
                    
-                    Current_Attack_State = Attack_States.Idle; 
+                    Current_Attack_State = Attack_States.Idle;
+                    calculate_Attack(2.5f,200);
 
                 }
                 break;

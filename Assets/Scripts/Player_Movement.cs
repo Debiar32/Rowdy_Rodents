@@ -131,7 +131,7 @@ public class Player_Movement : MonoBehaviour
                     Current_State = Player_States.Idle;
                 }
 
-                else if (Dash.IsPressed() && Is_Dashing == false) {
+                else if (Dash.IsInProgress() && Is_Dashing == false) {
                     Current_State = Player_States.Dash;
                 }
                 else if (health.Is_Dead == true)

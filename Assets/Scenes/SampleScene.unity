@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 583748156}
   - component: {fileID: 583748158}
   - component: {fileID: 583748159}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -2329,7 +2329,7 @@ MonoBehaviour:
   Attack_Cooldown: 0
   Attack_Order: 0
   Max_Attack_Count: 3
-  Attack_ref: {fileID: 0}
+  Attack_ref: {fileID: 1455024292}
   player_movement: {fileID: 0}
   Slash_Effect: {fileID: 1385455740}
   Player_Rb: {fileID: 0}
