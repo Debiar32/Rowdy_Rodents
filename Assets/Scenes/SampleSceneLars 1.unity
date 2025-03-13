@@ -5339,6 +5339,7 @@ GameObject:
   - component: {fileID: 1777557971}
   - component: {fileID: 1777557974}
   - component: {fileID: 1777557975}
+  - component: {fileID: 1777557976}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5588,10 +5589,10 @@ MonoBehaviour:
   Enemy_Layer:
     serializedVersion: 2
     m_Bits: 64
-  Attack_Cooldown: 0.6
+  Attack_Cooldown: 0.25
   Nbr_Attacks: 0
-  Max_Attacks: 3
-  Attack_Reset_Time: 0.7
+  Max_Attacks: 2
+  Attack_Reset_Time: 0.6
   CooldownImage: {fileID: 1235963436}
 --- !u!114 &1777557975
 MonoBehaviour:
@@ -5615,6 +5616,41 @@ MonoBehaviour:
   minBubbleWaitTime: 4
   maxBubbleWaitTime: 8
   max_health: 120
+--- !u!114 &1777557976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1777557968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca94df0ca36369d4eb6a9d1c38f532ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinRadius: 7
+  spinDuration: 0.5
+  spinDamage: 30
+  Enemy_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  Spin:
+    m_Name: Spin
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: bde7b3bb-69f3-46a8-ae95-94c44454b470
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: eee84582-ac1f-4199-9915-bec51c0008ab
+      m_Path: <Keyboard>/g
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Spin
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1 &1777840943
 GameObject:
   m_ObjectHideFlags: 0

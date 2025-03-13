@@ -797,7 +797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpbar: {fileID: 144845941890834753}
-  Max_Health: 20
+  Max_Health: 90
   DamageIndicatorPrefab: {fileID: 3212212293670629125}
   DamageParticlesPrefab: {fileID: 7676057185325709055, guid: 2c745240cca003a4a8dae30ef509aad3, type: 3}
   DamageIndicatorAttachPoint: {fileID: 8306318431839032491}

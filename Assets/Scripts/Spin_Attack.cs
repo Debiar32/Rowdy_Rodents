@@ -1,73 +1,80 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class SpinAttack : MonoBehaviour
+public class Player_SpinAttack : MonoBehaviour
 {
-    /*
-    public float spinDamage = 30f;    // Damage dealt to enemies
-    public float spinRadius = 2f;     // Range of the spin attack
-    public float spinCooldown = 1.5f; // Cooldown before the next spin
+    [Header("Spin Attack Settings")]
+    [SerializeField] private float spinRadius = 3f;
+    [SerializeField] private float spinDuration = 0.5f;
+    [SerializeField] private float spinDamage = 30f;
+    [SerializeField] private LayerMask Enemy_Layer;
+    [SerializeField] private InputAction Spin;
 
-    private bool canSpin = true;
-    private Player_Movement playerMovement;
+    private bool isSpinning = false;
+    private Player_Attack_Manager attackManager;
 
-    void Start()
+    private void Awake()
     {
-        playerMovement = GetComponent<Player_Movement>();
+        attackManager = GetComponent<Player_Attack_Manager>();
     }
 
-    void Update()
+    private void OnEnable()
     {
-        if (canSpin && Input.GetButtonDown("SpinAttack")) // Replace with correct input
+        Spin.Enable();
+    }
+
+    private void OnDisable()
+    {
+        Spin.Disable();
+    }
+
+    private void Update()
+    {
+        if (Spin.WasPressedThisFrame())
         {
-            StartCoroutine(PerformSpinAttack());
+            Perform_SpinAttack();
         }
     }
 
-    private IEnumerator PerformSpinAttack()
+    public void Perform_SpinAttack()
     {
-        if (!canSpin) yield break;
-        canSpin = false;
-
-        // Set attack state
-        if (playerMovement != null)
+        // Only allow spin attack when the player has reached max attacks AND the long cooldown is running
+        if (!isSpinning && attackManager != null && attackManager.Is_Cooldown && attackManager.Nbr_Attacks == attackManager.Max_Attacks)
         {
-            playerMovement.SetAttackState(true);
+            StartCoroutine(SpinAttack());
         }
+    }
 
-        // **Create the hitbox by checking for enemies in range**
-        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, spinRadius);
+    private IEnumerator SpinAttack()
+    {
+        isSpinning = true;
+
+        // Detect enemies in range
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position, spinRadius, Enemy_Layer);
+
         foreach (Collider enemy in hitEnemies)
         {
+            Debug.Log($"Hit {enemy.name} with spin attack!");
+
             if (enemy.CompareTag("Enemy"))
             {
-                EnemyNew_Logic enemyLogic = enemy.GetComponent<EnemyNew_Logic>();
-                if (enemyLogic != null)
+                EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+                if (enemyHealth != null)
                 {
-                    enemyLogic.TakeDamage(spinDamage); // Damage enemy
+                    enemyHealth.Deal_Damage(spinDamage);
                 }
             }
         }
 
-        // Wait a bit to simulate attack animation/effect
-        yield return new WaitForSeconds(0.3f);
-
-        // Reset attack state
-        if (playerMovement != null)
-        {
-            playerMovement.SetAttackState(false);
-        }
-
-        // Cooldown
-        yield return new WaitForSeconds(spinCooldown);
-        canSpin = true;
+        // Wait for spin duration before allowing another spin
+        yield return new WaitForSeconds(spinDuration);
+        isSpinning = false;
     }
 
-    // **Optional: Visual Debugging**
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, spinRadius);
     }
-    */
 }

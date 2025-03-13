@@ -16,7 +16,7 @@ public class Player_Attack_Manager : MonoBehaviour
     public float Attack_Reset_Time = 2f; // Additional time before resetting attack counter
 
     private bool Is_Attacking = false;
-    private bool Is_Cooldown = false;
+    public bool Is_Cooldown = false;
     private Coroutine cooldownCoroutine;
 
     [Header("UI Settings")]
