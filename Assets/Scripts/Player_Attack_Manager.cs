@@ -14,6 +14,7 @@ public class Player_Attack_Manager : MonoBehaviour
     public int Nbr_Attacks = 0;
     public int Max_Attacks = 2;
     public float Attack_Reset_Time = 2f; // Additional time before resetting attack counter
+    public GameObject BaseSword;
 
     private bool Is_Attacking = false;
     public bool Is_Cooldown = false;
@@ -45,10 +46,19 @@ public class Player_Attack_Manager : MonoBehaviour
         }
     }
 
+    private IEnumerator Attack_Animation()
+    {
+        //Debug.Log("It works");
+        BaseSword.GetComponent<Animator>().Play("slashAnimSword");
+        yield return new WaitForSeconds(.25f);
+        BaseSword.GetComponent<Animator>().Play("New State");
+    }
+
     private IEnumerator Attack_Coroutine()
     {
         Is_Attacking = true;
         CreateAttackVisual();
+        StartCoroutine(Attack_Animation());
 
         // Detect and damage enemies
         Collider[] Hit_Enemies = Physics.OverlapBox(Attack_Point.position, Attack_Size / 2, Quaternion.identity, Enemy_Layer);

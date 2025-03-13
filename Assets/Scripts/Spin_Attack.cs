@@ -43,7 +43,7 @@ public class Player_SpinAttack : MonoBehaviour
         // Only allow spin attack when the player has reached max attacks AND the long cooldown is running
         if (!isSpinning && attackManager != null && attackManager.Is_Cooldown && attackManager.Nbr_Attacks == attackManager.Max_Attacks)
         {
-            StartCoroutine(SpinAttack());
+            StartCoroutine(SpinAttack());   
             if (waveAttack != null)
             {
                 waveAttack.RegisterSpinAttack();
