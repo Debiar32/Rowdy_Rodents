@@ -73,6 +73,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void SpawnEnemyBlood()
     {
+        Instantiate(DamageParticlesPrefab, lastSpawnPositionenem, Quaternion.identity);
+
+
+        /*
         if (DamageParticlesPrefab != null && DamageParticlesAttachPoint != null)
         {
             // Instantiate the bubble effect at the spawn point and set the parent to effectSpawnPoint
@@ -89,6 +93,7 @@ public class EnemyHealth : MonoBehaviour
             // If bubbleEffectPrefab is null, destroy the GameObject this script is attached to
             Destroy(gameObject);
         }
+        */
     }
 
 
@@ -121,7 +126,7 @@ public class EnemyHealth : MonoBehaviour
     private void Die()
     {
         // Handle the enemy's death here
-        Instantiate(DeathEffect, transform.position, Quaternion.identity);
+        Instantiate(DeathEffect, transform.position, DamageIndicatorAttachPoint.rotation * Quaternion.Euler(0, 180, 0));
         Debug.Log(gameObject.name + " has died.");
         Destroy(gameObject); // Destroy the enemy object
     }
