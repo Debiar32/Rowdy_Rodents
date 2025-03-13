@@ -57,7 +57,7 @@ public class Player_Attack_Manager : MonoBehaviour
     private IEnumerator Attack_Coroutine()
     {
         Is_Attacking = true;
-        CreateAttackVisual();
+        //CreateAttackVisual();
         StartCoroutine(Attack_Animation());
 
         // Detect and damage enemies
