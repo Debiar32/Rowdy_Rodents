@@ -1,4 +1,5 @@
 using System.Xml.Serialization;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -8,6 +9,7 @@ public class TitleScreen : MonoBehaviour
     [Header("Base Navigation Setup")]
     public MenuNavigationHandler menuNav;
     public GameObject mainMenuCanvas;
+    public GameObject CameraTitleScreen;
 
     public InputSystem_Actions TSControl;
     private InputAction ts_start;
@@ -29,10 +31,22 @@ public class TitleScreen : MonoBehaviour
         ts_start.Disable();
     }
 
-    private void StartMainMenuScreen(InputAction.CallbackContext context)
+    public void StartMainMenuScreen(InputAction.CallbackContext context)
     {
-        Invoke("ShowMainMenu", 2f);
+        StartCoroutine(MainMenuAnimations());
     }
+
+    private IEnumerator MainMenuAnimations()
+    {
+        // Trigger the first animation (e.g., fade in or logo animation)
+
+        yield return new WaitForSeconds(0.25f);
+        CameraTitleScreen.GetComponent<Animator>().Play("TitleScreenCamera_GoingDown");
+        yield return new WaitForSeconds(4.65f);
+        CameraTitleScreen.GetComponent<Animator>().Play("TitleScreenCamera_DownStill");
+        ShowMainMenu();
+    }
+
     private void ShowMainMenu()
     {
         gameObject.SetActive(false);  // Hide the title screen
