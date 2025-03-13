@@ -15,13 +15,13 @@ public class Player_Attack_Manager : MonoBehaviour
     [SerializeField] public bool Can_Attack = true;
     [SerializeField] private float Delay_Between_Attacks;
     [SerializeField] private float Attack_Cooldown;
-    [SerializeField]  public int Attack_Order = 0;
+    [SerializeField] public int Attack_Order = 0;
     [SerializeField] public int Max_Attack_Count = 3;
-     
-     
+
+
     [SerializeField] private Transform Attack_ref;
     [SerializeField] private Player_Movement player_movement;
-   
+
     [SerializeField] private TrailRenderer Slash_Effect;
     [SerializeField] private Rigidbody Player_Rb;
     [SerializeField] private TextMeshProUGUI Debug_text;
@@ -33,7 +33,7 @@ public class Player_Attack_Manager : MonoBehaviour
 
 
 
-     
+
     public enum Attack_States
     {
         Idle,
@@ -43,7 +43,7 @@ public class Player_Attack_Manager : MonoBehaviour
 
 
 
-        
+
 
     }
     public Attack_States Current_Attack_State = Attack_States.Idle;
@@ -76,49 +76,62 @@ public class Player_Attack_Manager : MonoBehaviour
     void Update()
     {
 
-        Attack_Order = Mathf.Clamp(Attack_Order, 0, Max_Attack_Count);
+
     }
 
     void FixedUpdate()
     {
-        if (player_movement.Current_State == Player_Movement.Player_States.Idle || player_movement.Current_State == Player_Movement.Player_States.Run) {
-            Can_Attack = true;   
-           }
-        else Can_Attack = false;
+        Attack_Order = Mathf.Clamp(Attack_Order, 0, Max_Attack_Count);
+        if (Attack_Order <= 0)
+        {
+            Can_Attack = false;
+        }
+        else if (Attack_Order > 0)
+        {
+            Can_Attack = true;
+        }
+
         Handle_Attacks();
     }
 
-    private void Handle_Attacks() {
+    private void Handle_Attacks()
+    {
 
         switch (Current_Attack_State)
         {
-                case Attack_States.Idle:
-                 if (Attack_Order < Max_Attack_Count) { 
+            case Attack_States.Idle:
+                if (Attack_Order < Max_Attack_Count)
+                {
                     Attack_Order = Max_Attack_Count;
-                    }
+                }
 
-                    if (Attack.IsInProgress()) 
-                    {
+                if (Attack.IsInProgress())
+                {
                     Current_Attack_State = Attack_States.Attacking;
-                    }
+                }
                 break;
 
-                case Attack_States.Attacking:
-                    Attack_Order -= 1;
-                    if (Attack_Order > 0)
-                    {
-                         Debug_text.text = "Attack";
-                         Glave_Slash();
-                    }
+            case Attack_States.Attacking:
+                Attack_Order -= 1;
+                if (Attack_Order > 0)
+                {
+                    Debug_text.text = "Attack";
+                    Glave_Slash();
+                   
+                    Current_Attack_State = Attack_States.Idle; 
 
-                
-                
-
-
-                
+                }
                 break;
 
-                
+            case Attack_States.Attack_Combiner:
+                StartCoroutine(Attack_Combine_Delay());
+                Debug_text.text = "Combine";
+
+
+
+                break;
+
+
 
         }
     }
@@ -130,10 +143,10 @@ public class Player_Attack_Manager : MonoBehaviour
 
     }
 
-    private void calculate_Attack(float range, float damage) 
+    private void calculate_Attack(float range, float damage)
     {
 
-        Detected_Enemies = Physics.OverlapSphere(Attack_ref.position,range,Enemy);
+        Detected_Enemies = Physics.OverlapSphere(Attack_ref.position, range, Enemy);
 
         foreach (Collider enemy in Detected_Enemies)
         {
@@ -141,18 +154,24 @@ public class Player_Attack_Manager : MonoBehaviour
 
             enemy.gameObject.SetActive(false);
         }
-        
-    
+
+
     }
-    public void Knockback(Rigidbody rb, float Knockback_Power) {
+    public void Knockback(Rigidbody rb, float Knockback_Power)
+    {
         rb.AddForce(rb.gameObject.transform.forward, ForceMode.Impulse);
-    
+
     }
 
-    private IEnumerator Basic_Slash() {
+    private IEnumerator Basic_Slash()
+    {
         yield return new WaitForSeconds(.3f);
         Debug.Log("Slashed");
 
-        
+
+    }
+
+    private IEnumerator Attack_Combine_Delay() { 
+        yield return new WaitForEndOfFrame();
     }
 }
