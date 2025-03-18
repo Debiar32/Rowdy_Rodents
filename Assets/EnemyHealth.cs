@@ -5,10 +5,14 @@ using UnityEngine.UI;
 public class EnemyHealth : MonoBehaviour
 {
 
+    [Header("UI")]
+
     [Header("Health Bar")]
+
     public Image hpbar;
     public float Max_Health = 100f;
     private float Current_Health;
+    public float stunTime = 0.25f;
 
     public GameObject DamageIndicatorPrefab; // Prefab for the damage indicator (can be a sprite or simple 3D object)
     public ParticleSystem DamageParticlesPrefab; // Particle system for damage effect
@@ -19,6 +23,8 @@ public class EnemyHealth : MonoBehaviour
 
     [Header("Death Effect")]
     public ParticleSystem DeathEffect;
+
+    public EnemyNew_Logic NewEL;
 
     void Start()
     {
@@ -48,7 +54,7 @@ public class EnemyHealth : MonoBehaviour
         EnemyNew_Logic enemyLogic = GetComponent<EnemyNew_Logic>();
         if (enemyLogic != null)
         {
-            enemyLogic.Stun(0.2f);
+            enemyLogic.Stun(stunTime);
         }
         SpawnEnemyBlood();
         UpdateHealthBarEnemy();

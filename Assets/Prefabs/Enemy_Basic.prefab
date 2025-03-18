@@ -659,9 +659,9 @@ GameObject:
   - component: {fileID: 413783605173763441}
   - component: {fileID: 4291932394269936291}
   - component: {fileID: 1537894228850814409}
+  - component: {fileID: 6193376904010472077}
   - component: {fileID: 1721254383149758832}
   - component: {fileID: 4887509687276317052}
-  - component: {fileID: 6193376904010472077}
   m_Layer: 6
   m_Name: Enemy_Basic
   m_TagString: Enemy
@@ -731,10 +731,32 @@ MonoBehaviour:
   Walk_Detection_Range: 6
   Attack_Detection_Range: 2.5
   Target: {fileID: 0}
-  Enemy_Attack_Duration: 0.15
   Attack_Damage: 20
+  Enemy_Attack_Duration: 0.15
   attackIndicator: {fileID: 3443294863581212579}
   attackRangeCollider: {fileID: 3011968948788946089}
+  knockbackPower: 40
+  isSpawnedFromSpawner: 0
+  spawnAnimation: Spawn
+--- !u!114 &6193376904010472077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5713537734281114784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3305cc87489a57e409f59d599b79eae4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpbar: {fileID: 144845941890834753}
+  Max_Health: 90
+  DamageIndicatorPrefab: {fileID: 3212212293670629125}
+  DamageParticlesPrefab: {fileID: 7676057185325709055, guid: 2c745240cca003a4a8dae30ef509aad3, type: 3}
+  DamageIndicatorAttachPoint: {fileID: 8306318431839032491}
+  DamageParticlesAttachPoint: {fileID: 8306318431839032491}
+  DeathEffect: {fileID: 7676057185325709055, guid: 58db375e30e542e4db13c69a99ecea9b, type: 3}
 --- !u!195 &1721254383149758832
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -784,25 +806,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6193376904010472077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5713537734281114784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3305cc87489a57e409f59d599b79eae4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hpbar: {fileID: 144845941890834753}
-  Max_Health: 90
-  DamageIndicatorPrefab: {fileID: 3212212293670629125}
-  DamageParticlesPrefab: {fileID: 7676057185325709055, guid: 2c745240cca003a4a8dae30ef509aad3, type: 3}
-  DamageIndicatorAttachPoint: {fileID: 8306318431839032491}
-  DamageParticlesAttachPoint: {fileID: 8306318431839032491}
-  DeathEffect: {fileID: 7676057185325709055, guid: 58db375e30e542e4db13c69a99ecea9b, type: 3}
 --- !u!1 &6062385967393350917
 GameObject:
   m_ObjectHideFlags: 0

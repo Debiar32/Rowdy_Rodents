@@ -4,29 +4,50 @@ using System.Collections;
 
 public class EnemyNew_Logic : MonoBehaviour
 {
+    [Header("Movement Speeds")]
     [SerializeField] private float Move_Speed_Walk; // Speed when walking toward player
     [SerializeField] private float Move_Speed_Run;  // Speed when chasing the player
+    private Rigidbody rb;
+    private NavMeshAgent agent;
+
+    [Header("Detection Ranges")]
     [SerializeField] private float General_Detection_Range; // Range to detect the player
     [SerializeField] private float Walk_Detection_Range; // Range to walk toward player (slower speed)
     [SerializeField] private float Attack_Detection_Range; // Range to trigger the attack
 
+    [Header("Attack")]
     [SerializeField] private GameObject Target; // Player target
-    private NavMeshAgent agent;
-    public float Enemy_Attack_Duration = 1f;
-    public float Attack_Damage = 20f;
+    public float Attack_Damage = 20f; // The amount of damage towards the Player
+    public float Enemy_Attack_Duration = 1f; //How long does the attack last
+    public GameObject attackIndicator; // Small sphere to show attack area
+    public GameObject attackRangeCollider; // Collider that detects player in attack range
 
     // Attack-related variables
     private bool isAttacking = false;
     private bool canAttack = true;
     private bool isStunned = false;
-    public GameObject attackIndicator; // Small sphere to show attack area
-    public GameObject attackRangeCollider; // Collider that detects player in attack range
+
+    [Header("Knockback")]
+    public float knockbackPower = 4f;
+
+    [Header("Spawning Animation")]
+    public bool isSpawnedFromSpawner = false;
+    public string spawnAnimation = "Spawn";
+    private Animator animator;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
-        attackIndicator.SetActive(false); // Initially hide the attack indicator
-        attackRangeCollider.SetActive(false); // Initially hide the attack range collider
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
+
+        attackIndicator.SetActive(false);
+        attackRangeCollider.SetActive(false);
+
+        if (isSpawnedFromSpawner && animator != null)
+        {
+            animator.Play(spawnAnimation);
+        }
     }
 
     private void Awake()
@@ -128,9 +149,15 @@ public class EnemyNew_Logic : MonoBehaviour
     {
         isStunned = true;
         agent.isStopped = true; // Stop movement
+        agent.enabled = false; //Deactivate Navmesh Agent
+        rb.isKinematic = false; //Deactivate Kinematic on Rigidbody
+
+        Vector3 knockbackDirection = -transform.forward /*+ Vector3.up*/;
+        rb.AddForce(knockbackDirection * knockbackPower, ForceMode.Impulse);
         yield return new WaitForSeconds(duration);
         isStunned = false;
         agent.isStopped = false; // Resume movement
+        agent.enabled = true; //Activate Navmesh Agent
+        rb.isKinematic = true; //Activate Kinematic on Rigidbody
     }
 }
-

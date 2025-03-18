@@ -4769,6 +4769,7 @@ MonoBehaviour:
   Dash_Cooldown: 0.81
   Is_Dashing: 0
   Dash_Cooldown_UI: {fileID: 413330812}
+  attacker: {fileID: 0}
   Interaction:
     m_Name: Interaction
     m_Type: 0
@@ -12254,6 +12255,10 @@ PrefabInstance:
     - target: {fileID: 413783605173763441, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4887509687276317052, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
+      propertyPath: m_Mass
+      value: 0.13
       objectReference: {fileID: 0}
     - target: {fileID: 5713537734281114784, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
       propertyPath: m_Name
