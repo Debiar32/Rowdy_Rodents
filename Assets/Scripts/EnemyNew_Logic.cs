@@ -18,6 +18,7 @@ public class EnemyNew_Logic : MonoBehaviour
     [Header("Attack")]
     [SerializeField] private GameObject Target; // Player target
     public float Attack_Damage = 20f; // The amount of damage towards the Player
+    public float Attack_Charge_Time = 0.5f;
     public float Enemy_Attack_Duration = 1f; //How long does the attack last
     public GameObject attackIndicator; // Small sphere to show attack area
     public GameObject attackRangeCollider; // Collider that detects player in attack range
@@ -103,7 +104,7 @@ public class EnemyNew_Logic : MonoBehaviour
         // Show attack indicator (small sphere) for 1 second
         attackIndicator.SetActive(true);
         attackIndicator.transform.position = transform.position + transform.forward * 1.5f + Vector3.up * 2f;
-        yield return new WaitForSeconds(1f); // Wait for 1 second before showing the attack range
+        yield return new WaitForSeconds(Attack_Charge_Time); // Wait for 1 second before showing the attack range
 
         // Hide the attack indicator after 1 second
         attackIndicator.SetActive(false);

@@ -86,7 +86,7 @@ public class Player_Movement : MonoBehaviour
     {
         Move_Vector = Move.ReadValue<Vector2>();
         Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
-        if (Attack.IsPressed())
+        if (Attack.IsInProgress())
         {
             Attack_Manager.Perform_Attack();
         }
@@ -144,7 +144,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing()
     {
         Is_Dashing = true;
-        Player_rb.AddForce(transform.forward * Dash_Force, ForceMode.Impulse);
+        Player_rb.linearVelocity = new Vector3(transform.forward.x,0,transform.forward.z) * Mathf.Lerp(0f,Dash_Force,0.4f);
         Dash_Cooldown_UI.fillAmount = 1; // Start cooldown visual
         float elapsed = 0;
 

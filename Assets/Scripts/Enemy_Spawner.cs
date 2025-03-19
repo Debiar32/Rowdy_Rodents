@@ -4,39 +4,39 @@ using UnityEngine;
 public class Enemy_Spawner : MonoBehaviour
 {
     public GameObject Enemy_Prefab;
-    public int Enemy_wave_number = 5;
-    public float Spawn_Time = 1.5f;
-    private bool We_Spawning = false;
-    public Vector3[] Spawn_Positions = new Vector3[]
-    {
-    new Vector3(0, 0, 10),
-    new Vector3(20, 0, 20),
-    new Vector3(-10, 0, 20)
-    };
+    public float Spawn_Time = 2f;
+    public float Spawn_Radius = 10f;  // How far from the spawner enemies can appear
+    public LayerMask ObstacleMask;    // Optional: to avoid spawning inside objects
 
-    // Update is called once per frame
-    void Update()
+    void Start()
     {
-        
+        StartCoroutine(Continuous_Spawn());
     }
-    public void Activate_Spawn(Transform playerTransform)
+
+    private IEnumerator Continuous_Spawn()
     {
-        if (Vector3.Distance(transform.position, playerTransform.position) > 4f)
-            return;
-        if(!We_Spawning)
+        while (true)
         {
-            StartCoroutine(Spawn_Wave());
-        }
-    }
-    private IEnumerator Spawn_Wave()
-    {
-        We_Spawning = true;
-        for (int i=0;i<Enemy_wave_number; i++)
-        {
-            Vector3 Spawn_pos = Spawn_Positions[Random.Range(0, Spawn_Positions.Length)];
-            Instantiate(Enemy_Prefab, Spawn_pos, Quaternion.identity);
+            Vector3 spawnPos = GetValidSpawnPosition();
+            Instantiate(Enemy_Prefab, spawnPos, Quaternion.identity);
             yield return new WaitForSeconds(Spawn_Time);
         }
-        We_Spawning = false;
+    }
+
+    private Vector3 GetValidSpawnPosition()
+    {
+        Vector3 randomPos;
+        int attempts = 0;
+        do
+        {
+            // Random point in a circle around the spawner
+            Vector2 circle = Random.insideUnitCircle * Spawn_Radius;
+            randomPos = new Vector3(transform.position.x + circle.x, transform.position.y, transform.position.z + circle.y);
+
+            attempts++;
+            if (attempts > 10) break;  // Failsafe in case it can’t find a good spot
+        } while (Physics.CheckSphere(randomPos, 0.5f, ObstacleMask));
+
+        return randomPos;
     }
 }
