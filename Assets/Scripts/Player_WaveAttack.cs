@@ -71,6 +71,7 @@ public class Player_WaveAttack : MonoBehaviour
     private void Perform_WaveAttack()
     {
         if (!canUseWave) return;
+        RumbleManager.instance.RumblePulse(1f, 1f, 0.4f);
         GameObject waveVFX = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
         waveVFX.transform.position = transform.position + transform.forward * 2f + Vector3.up * 0.5f;
         waveVFX.transform.localScale = new Vector3(4f, 0.3f, 7f);

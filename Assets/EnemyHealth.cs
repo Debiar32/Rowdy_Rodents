@@ -134,6 +134,7 @@ public class EnemyHealth : MonoBehaviour
         // Handle the enemy's death here
         Instantiate(DeathEffect, transform.position, DamageIndicatorAttachPoint.rotation * Quaternion.Euler(0, 180, 0));
         Debug.Log(gameObject.name + " has died.");
+        Player_Movement.killCount++;
         Destroy(gameObject); // Destroy the enemy object
     }
 }

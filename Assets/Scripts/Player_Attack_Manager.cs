@@ -59,6 +59,7 @@ public class Player_Attack_Manager : MonoBehaviour
         Is_Attacking = true;
         //CreateAttackVisual();
         StartCoroutine(Attack_Animation());
+        RumbleManager.instance.RumblePulse(0.25f, 0.25f, 0.25f);
 
         // Detect and damage enemies
         Collider[] Hit_Enemies = Physics.OverlapBox(Attack_Point.position, Attack_Size / 2, Quaternion.identity, Enemy_Layer);

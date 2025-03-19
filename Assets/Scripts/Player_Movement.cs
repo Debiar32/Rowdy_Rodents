@@ -40,6 +40,11 @@ public class Player_Movement : MonoBehaviour
 
     [SerializeField] private Enemy_Spawner spawner;
 
+    [Header("Kill Counter")]
+    public static int killCount = 0; // Tracks total kills
+
+
+
     public enum Player_States
     {
         Idle,
@@ -55,6 +60,7 @@ public class Player_Movement : MonoBehaviour
     private void Start()
     {
         Dash_Cooldown_UI.fillAmount = 0;
+        killCount = 0;
     }
 
 

@@ -92,6 +92,7 @@ public class Player_SpinAttack : MonoBehaviour
             if (waveAttack != null)
             {
                 waveAttack.RegisterSpinAttack();
+                RumbleManager.instance.RumblePulse(0.6f, 0.6f, 0.2f);
             }
         }
     }
