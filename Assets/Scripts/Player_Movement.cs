@@ -161,7 +161,7 @@ public class Player_Movement : MonoBehaviour
         
         Is_Dashing = true;
         Dash_Effect.emitting = true;
-        Player_rb.linearVelocity = new Vector3(Move_Vector.x,0,Move_Vector.y) * Mathf.Lerp(0f,Dash_Force,Dash_Smoothing);
+        Player_rb.linearVelocity = new Vector3(transform.forward.x,0,transform.forward.z) * Mathf.Lerp(0f,Dash_Force,Dash_Smoothing);
         yield return new WaitForSeconds(Dash_Cooldown);
         StartCoroutine(End_Dash());
         
