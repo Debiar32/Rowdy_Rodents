@@ -67,6 +67,7 @@ public class Player_Movement : MonoBehaviour
     {
         Player_rb = GetComponent<Rigidbody>();
         Attack_Manager = GetComponent<Player_Attack_Manager>();
+        Dash_Effect.emitting = false;
         
     }
     void Start()
@@ -84,7 +85,7 @@ public class Player_Movement : MonoBehaviour
     private void FixedUpdate()
     {
         Handle_State();
-        Debug.Log(Is_Dashing);
+        
     }
 
     private void Handle_State() {
@@ -159,6 +160,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
+        Dash_Effect.emitting = true;
         Player_rb.linearVelocity = new Vector3(Move_Vector.x,0,Move_Vector.y) * Mathf.Lerp(0f,Dash_Force,Dash_Smoothing);
         yield return new WaitForSeconds(Dash_Cooldown);
         StartCoroutine(End_Dash());
@@ -169,6 +171,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator End_Dash() { 
         yield return new WaitForEndOfFrame();
         Is_Dashing = false;
+        Dash_Effect.emitting = false;
         Current_State = Player_States.Idle;
         
 
