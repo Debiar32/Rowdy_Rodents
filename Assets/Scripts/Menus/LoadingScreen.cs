@@ -38,7 +38,7 @@ public class LoadingScreen : MonoBehaviour
         progressBar.value = 0;
 
         // Temporary scene load as you mentioned there are no save files yet
-        string sceneToLoad = "Test_n_Chill";  // Always load SampleScene for now
+        string sceneToLoad = "Lvl_01_Tutorial";  // Always load SampleScene for now
 
         AsyncOperation operation = SceneManager.LoadSceneAsync(sceneToLoad);
         operation.allowSceneActivation = false;  // Prevent automatic scene activation before loading is complete

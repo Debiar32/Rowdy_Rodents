@@ -16,6 +16,7 @@ public class Player_WaveAttack : MonoBehaviour
     [Header("UI Settings")]
     [SerializeField] private Image waveCooldownImage; // UI progress bar
     [SerializeField] private Image waveUsable; // UI progress bar
+    [SerializeField] private Image waveUsablePlayerButton; // UI progress bar
     [SerializeField] private Image waveBase; // UI progress bar
 
     private int spinCount = 0;
@@ -27,6 +28,7 @@ public class Player_WaveAttack : MonoBehaviour
     private void Start()
     {
         waveCooldownImage.fillAmount = 0f; // Start empty
+        waveUsablePlayerButton.fillAmount = 0f; // Start empty
         waveUsable.fillAmount = 0f; // Start empty
         waveBase.fillAmount = 0f; // Start empty
     }
@@ -42,6 +44,7 @@ public class Player_WaveAttack : MonoBehaviour
         {
             waveUsable.fillAmount = 0f;
             waveBase.fillAmount = 1f;
+            waveUsablePlayerButton.fillAmount = 0f;
         }
     }
 
@@ -58,6 +61,7 @@ public class Player_WaveAttack : MonoBehaviour
             waveCooldownImage.fillAmount = 0f;
             waveUsable.fillAmount = 1f;
             waveBase.fillAmount = 0f;
+            waveUsablePlayerButton.fillAmount = 1f;
         }
     }
 

@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Test_n_Chill.unity
     guid: fbb82485e615b1548b296df167e13eba
+  - enabled: 1
+    path: Assets/Scenes/Lvl_01_Tutorial.unity
+    guid: 56df650d941858a438447a17ab701756
   - enabled: 0
     path: Assets/Scenes/Menus/MainMenu.unity
     guid: 9f09cbfbef73e1b47b6a625becf7ebbb

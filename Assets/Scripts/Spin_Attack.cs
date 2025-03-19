@@ -17,6 +17,7 @@ public class Player_SpinAttack : MonoBehaviour
     [SerializeField] private Image spinCooldownImage; // UI overlay
     [SerializeField] private Image spinUsableImage; // UI overlay
     [SerializeField] private Image spinBaseImage; // UI overlay
+    [SerializeField] private Image SpinUsablePlayerButton; // UI overlay
     [SerializeField] private Image WaveUsableShowcase; // UI overlay
 
     private bool isSpinning = false;
@@ -43,6 +44,7 @@ public class Player_SpinAttack : MonoBehaviour
         spinUsableImage.fillAmount = 0f; // Start as usable
         spinBaseImage.fillAmount = 1f; // Start as usable
         WaveUsableShowcase.fillAmount = 0f; // Start as usable
+        SpinUsablePlayerButton.fillAmount = 0f; // Start as usable
     }
 
     private void Update()
@@ -55,6 +57,7 @@ public class Player_SpinAttack : MonoBehaviour
         if (spinCooldownImage.fillAmount == 0f && attackManager.Nbr_Attacks == attackManager.Max_Attacks && attackManager.Is_Cooldown)
         {
             spinUsableImage.fillAmount = 1f;
+            SpinUsablePlayerButton.fillAmount = 1f;
             WaveUsableShowcase.fillAmount = 1f;
             spinBaseImage.fillAmount = 0f;
         }
@@ -63,6 +66,7 @@ public class Player_SpinAttack : MonoBehaviour
             spinBaseImage.fillAmount = 1f;
             WaveUsableShowcase.fillAmount = 0f;
             spinUsableImage.fillAmount = 0f;
+            SpinUsablePlayerButton.fillAmount = 0f;
         }
     }
 
