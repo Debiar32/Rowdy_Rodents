@@ -25,6 +25,8 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] public float Dash_Force;
     [SerializeField] float Dash_Cooldown;
     [SerializeField] public bool Is_Dashing = false;
+    [SerializeField] private float Dash_Smoothing;
+    [SerializeField] private TrailRenderer Dash_Effect;
 
     [Header("Interacting")]
     [SerializeField] InputAction Interaction;
@@ -157,7 +159,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
-        Player_rb.AddForce(transform.forward * Dash_Force  ,ForceMode.Impulse);
+        Player_rb.linearVelocity = new Vector3(Move_Vector.x,0,Move_Vector.y) * Mathf.Lerp(0f,Dash_Force,Dash_Smoothing);
         yield return new WaitForSeconds(Dash_Cooldown);
         StartCoroutine(End_Dash());
         
