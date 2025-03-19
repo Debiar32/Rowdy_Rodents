@@ -727,12 +727,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move_Speed_Walk: 1
   Move_Speed_Run: 4
-  General_Detection_Range: 30
+  General_Detection_Range: 60
   Walk_Detection_Range: 6
   Attack_Detection_Range: 2.5
   Target: {fileID: 0}
   Attack_Damage: 20
-  Attack_Charge_Time: 0.65
+  Attack_Charge_Time: 0.6
   Enemy_Attack_Duration: 0.15
   attackIndicator: {fileID: 3443294863581212579}
   attackRangeCollider: {fileID: 3011968948788946089}

@@ -18,6 +18,9 @@ public class Player_WaveAttack : MonoBehaviour
     [SerializeField] private Image waveUsable; // UI progress bar
     [SerializeField] private Image waveUsablePlayerButton; // UI progress bar
     [SerializeField] private Image waveBase; // UI progress bar
+    [Header("Visual")]
+    [SerializeField] private GameObject waveVisualPrefab;
+
 
     private int spinCount = 0;
     private bool canUseWave = false;
@@ -68,6 +71,15 @@ public class Player_WaveAttack : MonoBehaviour
     private void Perform_WaveAttack()
     {
         if (!canUseWave) return;
+        GameObject waveVFX = GameObject.CreatePrimitive(PrimitiveType.Cylinder);
+        waveVFX.transform.position = transform.position + transform.forward * 2f + Vector3.up * 0.5f;
+        waveVFX.transform.localScale = new Vector3(4f, 0.3f, 7f);
+        waveVFX.GetComponent<Renderer>().material.color = Color.red;
+        waveVFX.GetComponent<Collider>().enabled = false;
+        Destroy(waveVFX, 1f); // destroy after 1 second
+
+        // Optionally: destroy after duration
+        Destroy(waveVFX, waveDuration);
 
         Debug.Log("Wave attack unleashed!");
         Collider[] hitEnemies = Physics.OverlapSphere(transform.position, waveRange, Enemy_Layer);

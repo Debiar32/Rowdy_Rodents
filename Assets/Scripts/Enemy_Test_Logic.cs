@@ -1,5 +1,4 @@
-using UnityEditor;
-using UnityEditor.Build.Content;
+
 using UnityEngine;
 
 public class Enemy_Test_Logic : MonoBehaviour
