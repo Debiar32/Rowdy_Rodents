@@ -1919,6 +1919,7 @@ GameObject:
   - component: {fileID: 94503026}
   - component: {fileID: 94503025}
   - component: {fileID: 94503024}
+  - component: {fileID: 94503032}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1933,7 +1934,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94503023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0efd140186513074daaa1bc1596d7abc, type: 3}
   m_Name: 
@@ -1982,7 +1983,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 94503023}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ca94df0ca36369d4eb6a9d1c38f532ea, type: 3}
   m_Name: 
@@ -2067,10 +2068,10 @@ MonoBehaviour:
   Enemy_Layer:
     serializedVersion: 2
     m_Bits: 64
-  Attack_Cooldown: 0.23
+  Attack_Cooldown: 0.22
   Nbr_Attacks: 0
-  Max_Attacks: 2
-  Attack_Reset_Time: 0.6
+  Max_Attacks: 6
+  Attack_Reset_Time: 0.2
   BaseSword: {fileID: 155424908}
   Is_Cooldown: 0
   CooldownImage: {fileID: 719413185}
@@ -2200,7 +2201,7 @@ MonoBehaviour:
       m_Flags: 0
     m_Flags: 0
   Dash_Force: 200
-  Dash_Cooldown: 3
+  Dash_Cooldown: 1
   Is_Dashing: 0
   Dash_Cooldown_UI: {fileID: 783103095}
   attacker: {fileID: 94503027}
@@ -2301,6 +2302,41 @@ Transform:
   - {fileID: 400760519}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &94503032
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94503023}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e98fa97e99ff6e439015305f50d251b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damageMultiplier: 2
+  cooldownMultiplier: 0.2
+  overdriveDuration: 2
+  activationWindow: 3
+  overdriveCooldown: 3
+  requiredAttacks: 6
+  overdriveAction:
+    m_Name: Overdrive
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 741a10e8-9347-48aa-b799-b917812dd73c
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings:
+    - m_Name: 
+      m_Id: 3cf2e73b-c89f-469e-82f0-e61cf6f78368
+      m_Path: <Gamepad>/buttonEast
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Overdrive
+      m_Flags: 0
+    m_Flags: 0
 --- !u!1001 &98511804
 PrefabInstance:
   m_ObjectHideFlags: 0
