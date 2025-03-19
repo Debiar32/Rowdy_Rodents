@@ -4782,7 +4782,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveRange: 10
   waveAngle: 45
-  waveDamage: 50
+  waveDamage: 80
   waveDuration: 0.8
   Enemy_Layer:
     serializedVersion: 2
@@ -4828,8 +4828,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spinRadius: 5
-  spinDuration: 0.5
-  spinDamage: 30
+  spinDuration: 0.15
+  spinDamage: 50
   spinCooldown: 0
   Enemy_Layer:
     serializedVersion: 2
@@ -13445,6 +13445,29 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 413783605173763441, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
   m_PrefabInstance: {fileID: 2130356540}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2132757850 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8626392611995903698, guid: 0e10b9346fa02ae40a16facce5c7ba63, type: 3}
+  m_PrefabInstance: {fileID: 3167179689153522129}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2132757854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132757850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8884c2f3e983b3a439e94aca178ea0d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy_Prefab: {fileID: 5713537734281114784, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
+  Spawn_Time: 6
+  Spawn_Radius: 10
+  ObstacleMask:
+    serializedVersion: 2
+    m_Bits: 1
 --- !u!1001 &2669624052756082611
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13595,6 +13618,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7821567634969312421, guid: 0e10b9346fa02ae40a16facce5c7ba63, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3167179689153522133}
+    - targetCorrespondingSourceObject: {fileID: 8626392611995903698, guid: 0e10b9346fa02ae40a16facce5c7ba63, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2132757854}
   m_SourcePrefab: {fileID: 100100000, guid: 0e10b9346fa02ae40a16facce5c7ba63, type: 3}
 --- !u!4 &3167179689153522130 stripped
 Transform:
