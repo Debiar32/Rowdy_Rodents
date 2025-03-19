@@ -3734,11 +3734,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 413783605173763441, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 30.57369
+      value: 18.8
       objectReference: {fileID: 0}
     - target: {fileID: 413783605173763441, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.2332995
+      value: 10.99
       objectReference: {fileID: 0}
     - target: {fileID: 413783605173763441, guid: 325049e4367763a49b3ed128dda432a2, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4937,9 +4937,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &690134179
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5038,8 +5038,8 @@ MonoBehaviour:
       m_Action: Dash
       m_Flags: 0
     m_Flags: 0
-  Dash_Force: 120
-  Dash_Cooldown: 0.81
+  Dash_Force: 350
+  Dash_Cooldown: 0.5
   Is_Dashing: 0
   Dash_Cooldown_UI: {fileID: 1345963961}
   attacker: {fileID: 690134177}
