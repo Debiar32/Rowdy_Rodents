@@ -152,7 +152,7 @@ public class EnemyNew_Logic : MonoBehaviour
         agent.enabled = false; //Deactivate Navmesh Agent
         rb.isKinematic = false; //Deactivate Kinematic on Rigidbody
 
-        Vector3 knockbackDirection = -transform.forward /*+ Vector3.up*/;
+        Vector3 knockbackDirection = -transform.forward + Vector3.up;
         rb.AddForce(knockbackDirection * knockbackPower, ForceMode.Impulse);
         yield return new WaitForSeconds(duration);
         isStunned = false;

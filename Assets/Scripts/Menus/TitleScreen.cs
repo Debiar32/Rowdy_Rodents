@@ -14,6 +14,23 @@ public class TitleScreen : MonoBehaviour
     public InputSystem_Actions TSControl;
     private InputAction ts_start;
 
+    public void Start()
+    {
+        if (DeathScreen.isReturningFromDeath)
+        {
+            DeathScreen.isReturningFromDeath = false;
+            ShowMainMenu();
+            CameraTitleScreen.GetComponent<Animator>().Play("TitleScreenCamera_DownStill");
+        }
+        else if (PauseMenu.pauseToMenu)
+        {
+            PauseMenu.pauseToMenu = false;
+            ShowMainMenu();
+            CameraTitleScreen.GetComponent<Animator>().Play("TitleScreenCamera_DownStill");
+
+        }
+    }
+
     private void Awake()
     {
         TSControl = new InputSystem_Actions();

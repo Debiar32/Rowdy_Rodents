@@ -690,6 +690,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenuOpen"",
+                    ""type"": ""Button"",
+                    ""id"": ""f7a03c16-b110-4b05-8e2a-d33246e363de"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenuClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""2e0e0963-27ed-4d58-9b30-e15e3c1acb46"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1286,6 +1304,50 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""GoBack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99540999-a60b-4962-bc1d-26e56914b1b5"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""PauseMenuOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f15b4ed5-e202-483c-90f0-0848f5c06de4"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PauseMenuOpen"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f57fa91d-26f0-4a1a-8931-21732eeb9691"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""PauseMenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b89823e-88a6-4449-a53c-e6cd9934eca5"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""PauseMenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1569,6 +1631,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_SwitchTabRight = m_UI.FindAction("SwitchTabRight", throwIfNotFound: true);
         m_UI_tsStart = m_UI.FindAction("tsStart", throwIfNotFound: true);
         m_UI_GoBack = m_UI.FindAction("GoBack", throwIfNotFound: true);
+        m_UI_PauseMenuOpen = m_UI.FindAction("PauseMenuOpen", throwIfNotFound: true);
+        m_UI_PauseMenuClose = m_UI.FindAction("PauseMenuClose", throwIfNotFound: true);
         // MainMenuActions
         m_MainMenuActions = asset.FindActionMap("MainMenuActions", throwIfNotFound: true);
         m_MainMenuActions_startGameAction = m_MainMenuActions.FindAction("startGameAction", throwIfNotFound: true);
@@ -1854,6 +1918,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_SwitchTabRight;
     private readonly InputAction m_UI_tsStart;
     private readonly InputAction m_UI_GoBack;
+    private readonly InputAction m_UI_PauseMenuOpen;
+    private readonly InputAction m_UI_PauseMenuClose;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -1922,6 +1988,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @GoBack => m_Wrapper.m_UI_GoBack;
         /// <summary>
+        /// Provides access to the underlying input action "UI/PauseMenuOpen".
+        /// </summary>
+        public InputAction @PauseMenuOpen => m_Wrapper.m_UI_PauseMenuOpen;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/PauseMenuClose".
+        /// </summary>
+        public InputAction @PauseMenuClose => m_Wrapper.m_UI_PauseMenuClose;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -1989,6 +2063,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @GoBack.started += instance.OnGoBack;
             @GoBack.performed += instance.OnGoBack;
             @GoBack.canceled += instance.OnGoBack;
+            @PauseMenuOpen.started += instance.OnPauseMenuOpen;
+            @PauseMenuOpen.performed += instance.OnPauseMenuOpen;
+            @PauseMenuOpen.canceled += instance.OnPauseMenuOpen;
+            @PauseMenuClose.started += instance.OnPauseMenuClose;
+            @PauseMenuClose.performed += instance.OnPauseMenuClose;
+            @PauseMenuClose.canceled += instance.OnPauseMenuClose;
         }
 
         /// <summary>
@@ -2042,6 +2122,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @GoBack.started -= instance.OnGoBack;
             @GoBack.performed -= instance.OnGoBack;
             @GoBack.canceled -= instance.OnGoBack;
+            @PauseMenuOpen.started -= instance.OnPauseMenuOpen;
+            @PauseMenuOpen.performed -= instance.OnPauseMenuOpen;
+            @PauseMenuOpen.canceled -= instance.OnPauseMenuOpen;
+            @PauseMenuClose.started -= instance.OnPauseMenuClose;
+            @PauseMenuClose.performed -= instance.OnPauseMenuClose;
+            @PauseMenuClose.canceled -= instance.OnPauseMenuClose;
         }
 
         /// <summary>
@@ -2434,6 +2520,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnGoBack(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PauseMenuOpen" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPauseMenuOpen(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "PauseMenuClose" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnPauseMenuClose(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MainMenuActions" which allows adding and removing callbacks.

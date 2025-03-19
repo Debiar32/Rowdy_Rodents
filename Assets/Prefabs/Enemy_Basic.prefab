@@ -347,7 +347,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e0d1fa6430a51b94388e58122f2259e7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: e0d1fa6430a51b94388e58122f2259e7, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -752,11 +752,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hpbar: {fileID: 144845941890834753}
   Max_Health: 90
+  stunTime: 0.25
   DamageIndicatorPrefab: {fileID: 3212212293670629125}
   DamageParticlesPrefab: {fileID: 7676057185325709055, guid: 2c745240cca003a4a8dae30ef509aad3, type: 3}
   DamageIndicatorAttachPoint: {fileID: 8306318431839032491}
   DamageParticlesAttachPoint: {fileID: 8306318431839032491}
   DeathEffect: {fileID: 7676057185325709055, guid: 58db375e30e542e4db13c69a99ecea9b, type: 3}
+  NewEL: {fileID: 0}
 --- !u!195 &1721254383149758832
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -787,7 +789,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5713537734281114784}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 5
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

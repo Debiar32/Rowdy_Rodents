@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Health_System : MonoBehaviour
 {
     [Header("Health Bar")]
-    public Slider slider;
+    public Image slider;
 
     public DeathScreen DeathScreen;
 
@@ -97,8 +97,7 @@ public class Health_System : MonoBehaviour
     {
         if (slider != null)
         {
-            slider.maxValue = max_health;
-            slider.value = current_health;
+            slider.fillAmount = current_health / max_health;
         }
     }
 
