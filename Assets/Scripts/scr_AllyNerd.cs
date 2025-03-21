@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public class scr_AllyNerd : MonoBehaviour
@@ -48,13 +47,4 @@ public class scr_AllyNerd : MonoBehaviour
         playerHubMove.HubIsInteracting = true;
         interactionCanvas.SetActive(true);
     }
-
-
-
-
-
-
-
-
-
 }

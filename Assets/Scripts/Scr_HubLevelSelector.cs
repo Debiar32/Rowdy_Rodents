@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 public class Scr_HubLevelSelector : MonoBehaviour
 {
@@ -9,11 +10,31 @@ public class Scr_HubLevelSelector : MonoBehaviour
     [SerializeField] public Transform Camera_Target01;
     [SerializeField] public Transform Camera_Target02;
 
+    public InputSystem_Actions navigation;
+    private InputAction Interacting;
+
     public GameObject interactionCanvas; // Assign the UI canvas per object
 
 
     private Transform player;
     public Player_HubMovement playerHubMove;
+
+    private void OnEnable()
+    {
+        Interacting = navigation.UI.Interact;
+        Interacting.Enable();
+        Interacting.performed += OpenMenuLevelSelector;
+    }
+
+    private void OnDisable()
+    {
+        
+    }
+
+    private void Awake()
+    {
+        navigation = new InputSystem_Actions();
+    }
 
     private void Start()
     {
@@ -44,20 +65,16 @@ public class Scr_HubLevelSelector : MonoBehaviour
         }
     }
 
-    public void OpenMenuLevelSelector()
+    public void OpenMenuLevelSelector(InputAction.CallbackContext context)
     {
-        Debug.Log("Nerd Shop Works!");
-        playerHubMove.HubIsInteracting = true;
-        interactionCanvas.SetActive(true);
-        cameraScript.Camera_Target = Camera_Target02;
+        if (playerHubMove.LevelSelectorOn && playerHubMove.canInteractWith)
+        {
+            Debug.Log("Nerd Shop Works!");
+            playerHubMove.HubIsInteracting = true;
+            interactionCanvas.SetActive(true);
+            cameraScript.Camera_Target = Camera_Target02;
+        }
     }
-
-
-
-
-
-
-
 
 
 }

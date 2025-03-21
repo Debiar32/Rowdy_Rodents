@@ -153,7 +153,7 @@ public class Player_HubMovement : MonoBehaviour
             else if (LevelSelectorOn)
             {
                 Debug.Log("Shop 04 Works!");
-                levelSelectorScript.OpenMenuLevelSelector();
+                //levelSelectorScript.OpenMenuLevelSelector();
             }
             else
             {

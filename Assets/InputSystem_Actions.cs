@@ -708,6 +708,24 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Selecting"",
+                    ""type"": ""Button"",
+                    ""id"": ""dde32758-fa85-4300-9da0-38762c26f6e1"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf3db3fa-1c86-4e3c-b222-9b3b4e9122c6"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1348,6 +1366,50 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""PauseMenuClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e99dba4f-c4e9-4711-aeee-0c49c317ac27"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Selecting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""325c2f65-1b6b-4923-b4fd-7027b6d23881"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Selecting"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""426bd343-9ce3-4f29-a50b-db03734022ad"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f4f9f014-148b-4174-a79d-803e413f9794"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -1706,6 +1768,17 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""action"": ""HubInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""12ee17ca-19b7-4441-8661-38d9023702bb"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": "";Gamepad"",
+                    ""action"": ""HubInteraction"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1802,6 +1875,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_GoBack = m_UI.FindAction("GoBack", throwIfNotFound: true);
         m_UI_PauseMenuOpen = m_UI.FindAction("PauseMenuOpen", throwIfNotFound: true);
         m_UI_PauseMenuClose = m_UI.FindAction("PauseMenuClose", throwIfNotFound: true);
+        m_UI_Selecting = m_UI.FindAction("Selecting", throwIfNotFound: true);
+        m_UI_Interact = m_UI.FindAction("Interact", throwIfNotFound: true);
         // MainMenuActions
         m_MainMenuActions = asset.FindActionMap("MainMenuActions", throwIfNotFound: true);
         m_MainMenuActions_startGameAction = m_MainMenuActions.FindAction("startGameAction", throwIfNotFound: true);
@@ -2094,6 +2169,8 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputAction m_UI_GoBack;
     private readonly InputAction m_UI_PauseMenuOpen;
     private readonly InputAction m_UI_PauseMenuClose;
+    private readonly InputAction m_UI_Selecting;
+    private readonly InputAction m_UI_Interact;
     /// <summary>
     /// Provides access to input actions defined in input action map "UI".
     /// </summary>
@@ -2170,6 +2247,14 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @PauseMenuClose => m_Wrapper.m_UI_PauseMenuClose;
         /// <summary>
+        /// Provides access to the underlying input action "UI/Selecting".
+        /// </summary>
+        public InputAction @Selecting => m_Wrapper.m_UI_Selecting;
+        /// <summary>
+        /// Provides access to the underlying input action "UI/Interact".
+        /// </summary>
+        public InputAction @Interact => m_Wrapper.m_UI_Interact;
+        /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
         public InputActionMap Get() { return m_Wrapper.m_UI; }
@@ -2243,6 +2328,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PauseMenuClose.started += instance.OnPauseMenuClose;
             @PauseMenuClose.performed += instance.OnPauseMenuClose;
             @PauseMenuClose.canceled += instance.OnPauseMenuClose;
+            @Selecting.started += instance.OnSelecting;
+            @Selecting.performed += instance.OnSelecting;
+            @Selecting.canceled += instance.OnSelecting;
+            @Interact.started += instance.OnInteract;
+            @Interact.performed += instance.OnInteract;
+            @Interact.canceled += instance.OnInteract;
         }
 
         /// <summary>
@@ -2302,6 +2393,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @PauseMenuClose.started -= instance.OnPauseMenuClose;
             @PauseMenuClose.performed -= instance.OnPauseMenuClose;
             @PauseMenuClose.canceled -= instance.OnPauseMenuClose;
+            @Selecting.started -= instance.OnSelecting;
+            @Selecting.performed -= instance.OnSelecting;
+            @Selecting.canceled -= instance.OnSelecting;
+            @Interact.started -= instance.OnInteract;
+            @Interact.performed -= instance.OnInteract;
+            @Interact.canceled -= instance.OnInteract;
         }
 
         /// <summary>
@@ -2815,6 +2912,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnPauseMenuClose(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Selecting" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnSelecting(InputAction.CallbackContext context);
+        /// <summary>
+        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnInteract(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "MainMenuActions" which allows adding and removing callbacks.
