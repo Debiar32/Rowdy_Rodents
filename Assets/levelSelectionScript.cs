@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class levelSelectionScript : MonoBehaviour
 {
@@ -46,5 +47,36 @@ public class levelSelectionScript : MonoBehaviour
         levelSelect.cameraScript.Camera_Target = levelSelect.Camera_Target01;
         playerHubMove.HubIsInteracting = false;
     }
+    public void OpenLevel00()
+    {
+        gameObject.SetActive(false);
+        levelSelect.cameraScript.Camera_Target = levelSelect.Camera_Target01;
+        playerHubMove.HubIsInteracting = false;
+        SceneManager.LoadScene("Lvl_00_TutorialNew");
+    }
+    public void OpenLevel01()
+    {
+        gameObject.SetActive(false);
+        levelSelect.cameraScript.Camera_Target = levelSelect.Camera_Target01;
+        playerHubMove.HubIsInteracting = false;
+        SceneManager.LoadScene("Lvl_01_Village");
+    }
+    public void OpenLevel02()
+    {
+        gameObject.SetActive(false);
+        levelSelect.cameraScript.Camera_Target = levelSelect.Camera_Target01;
+        playerHubMove.HubIsInteracting = false;
+        SceneManager.LoadScene("Lvl_02_Swamp");
+    }
+
+    public void OpenLevel03()
+    {
+        gameObject.SetActive(false);
+        levelSelect.cameraScript.Camera_Target = levelSelect.Camera_Target01;
+        playerHubMove.HubIsInteracting = false;
+        SceneManager.LoadScene("Lvl_03_Outpost");
+    }
+
+
 
 }

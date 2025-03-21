@@ -751,15 +751,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1b3a0c65d2f3cb40a2a56280fdf1973, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interact:
-    m_Name: Interact
-    m_Type: 0
-    m_ExpectedControlType: 
-    m_Id: 18aa9b27-93ed-40b0-8b9d-29a7f7c3577d
-    m_Processors: 
-    m_Interactions: 
-    m_SingletonActionBindings: []
-    m_Flags: 0
   levelToComplete: 0
 --- !u!4 &1293361557
 Transform:

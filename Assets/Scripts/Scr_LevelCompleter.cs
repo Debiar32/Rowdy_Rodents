@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -5,9 +6,14 @@ using UnityEngine.SceneManagement;
 public class Scr_LevelCompleter : MonoBehaviour
 {
     public InputSystem_Actions inputSystem;
-    public InputAction interact;
+    private InputAction interact;
 
-    [SerializeField] private int levelToComplete; // Choose level (1-4) in Inspector
+    [SerializeField] private int levelToComplete; // Choose level (0-3) in Inspector
+
+    private void Awake()
+    {
+        inputSystem = new InputSystem_Actions();
+    }
 
     private void OnEnable()
     {
@@ -19,21 +25,33 @@ public class Scr_LevelCompleter : MonoBehaviour
     private void OnDisable()
     {
         interact.Disable();
-        interact.performed -= CompleteLevel;
     }
 
-    private void CompleteLevel(InputAction.CallbackContext context)
+    public void CompleteLevel(InputAction.CallbackContext context)
     {
-        if (LevelProgressManager.instance != null && levelToComplete >= 1 && levelToComplete <= 4)
+        // Ensure levelToComplete is within valid range (0 to 3) and map it to correct index (0 to 3)
+        if (levelToComplete >= 0 && levelToComplete <= 3)
         {
-            LevelProgressManager.instance.levelsCompleted[levelToComplete - 1] = true;
-            Debug.Log("Level " + levelToComplete + " completed!");
+            if (LevelProgressManager.instance != null)
+            {
+                LevelProgressManager.instance.levelsCompleted[levelToComplete] = true;
+                Debug.Log("Level " + levelToComplete + " completed!");
+            }
+            else
+            {
+                Debug.LogError("LevelProgressManager instance is not found!");
+            }
+
             GoBackToHub();
+        }
+        else
+        {
+            Debug.LogError("Invalid levelToComplete value. Must be between 0 and 3.");
         }
     }
 
     public void GoBackToHub()
     {
-        SceneManager.LoadScene("Lvl_00_Hub");
+        SceneManager.LoadScene("Lvl_Hub");
     }
 }
