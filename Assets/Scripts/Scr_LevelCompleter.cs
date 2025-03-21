@@ -11,7 +11,7 @@ public class Scr_LevelCompleter : MonoBehaviour
 
     private void OnEnable()
     {
-        interact = inputSystem.PlayerHub.Interact;
+        interact = inputSystem.PlayerHub.HubInteraction;
         interact.Enable();
         interact.performed += CompleteLevel;
     }

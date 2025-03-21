@@ -13,6 +13,7 @@ public class Scr_HubLevelSelector : MonoBehaviour
 
     private int selectedIndex = 0;     // Index of selected button
     private bool isInTriggerZone = false;  // Flag to check if the player is in trigger zone
+    public bool LevelSelectorOn = false;
 
     /*void Start()
     {

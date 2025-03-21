@@ -15,7 +15,7 @@ public class Player_HubMovement : MonoBehaviour
 
     [Header("Movement")]
     public InputSystem_Actions hubmover;
-    public InputAction Interacting;
+    private InputAction Interacting;
 
     [SerializeField] InputAction Move;
     Vector2 Move_Vector;
@@ -23,10 +23,26 @@ public class Player_HubMovement : MonoBehaviour
     [SerializeField] private float Turning_Speed;
 
     [Header("Interacting")]
-    [SerializeField] InputAction Interaction;
-    [SerializeField] public bool HubIsInteracting;
-    [SerializeField] public bool canInteractWith;
+    [SerializeField] public bool HubIsInteracting = false;
+    [SerializeField] public bool canInteractWith = false;
+    public Image interactorIndicator;
 
+    public bool Nerd = false;
+    public bool allySuitUpgrades = false;
+    public bool allyWeaponUpgrades = false;
+    public bool LevelSelectorOn = false;
+
+    public scr_AllyWeaponUpgrades weaponUpgradesScript;
+    public scr_AllySuitUpgrades suitUpgradesScript;
+    public scr_AllyNerd nerdScript;
+    //private Scr_HubLevelSelector levelSelectorScript;
+
+
+    private void Awake()
+    {
+        hubmover = new InputSystem_Actions();
+        Player_rb = GetComponent<Rigidbody>();
+    }
 
     public enum Player_States
     {
@@ -47,22 +63,17 @@ public class Player_HubMovement : MonoBehaviour
     private void OnEnable()
     {
         Move.Enable();
-        Interacting = hubmover.PlayerHub.Interact;
+        Interacting = hubmover.PlayerHub.HubInteraction;
+        Interacting.performed += HubInteractionsAllies;
         Interacting.Enable();
-        Interaction.Enable();
     }
 
     private void OnDisable()
     {
         Move.Disable();
         Interacting.Disable();
-        Interaction.Disable();
     }
 
-    private void Awake()
-    {
-        Player_rb = GetComponent<Rigidbody>();
-    }
 
     void Update()
     {
@@ -70,6 +81,14 @@ public class Player_HubMovement : MonoBehaviour
         {
             Move_Vector = Move.ReadValue<Vector2>();
             Vector3 Move_Direction = new Vector3(Move_Vector.x, 0, Move_Vector.y);
+        }
+        if (canInteractWith && !HubIsInteracting)
+        {
+            interactorIndicator.fillAmount = 1f;
+        }
+        else
+        {
+            interactorIndicator.fillAmount = 0f;
         }
     }
 
@@ -112,6 +131,31 @@ public class Player_HubMovement : MonoBehaviour
     }
 
 
+    public void HubInteractionsAllies(InputAction.CallbackContext context)
+    {
+        if (canInteractWith && !HubIsInteracting)
+        {
+            if (allyWeaponUpgrades)
+            {
+                Debug.Log("Shop 01 Works!");
+                weaponUpgradesScript.OpenMenuWeapons();
+            }
+            else if (allySuitUpgrades)
+            {
+                Debug.Log("Shop 02 Works!");
+                suitUpgradesScript.OpenMenuSuit();
+            }
+            else if (Nerd)
+            {
+                Debug.Log("Shop 03 Works!");
+                nerdScript.OpenMenuNerd();
+            }
+            else
+            {
+                Debug.Log("WORKS THIS PART!");
+            }
+        }
+    }
 
 
 }

@@ -1554,12 +1554,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Interact"",
+                    ""name"": ""HubInteraction"",
                     ""type"": ""Button"",
-                    ""id"": ""e9ca3a31-64dd-4d1f-8c7a-a6f04f7d1efe"",
+                    ""id"": ""b7cf11b9-64c5-44c4-a89f-e4ae3281e7ea"",
                     ""expectedControlType"": """",
                     ""processors"": """",
-                    ""interactions"": ""Hold"",
+                    ""interactions"": """",
                     ""initialStateCheck"": false
                 }
             ],
@@ -1698,23 +1698,12 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""95eb9dc4-e1f5-411e-b944-487106020be7"",
+                    ""id"": ""f2f8a189-da56-4ba5-a17b-250850ce2417"",
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Interact"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36afd95a-1a53-429a-894c-328ed058bcdb"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Interact"",
+                    ""groups"": "";Keyboard&Mouse"",
+                    ""action"": ""HubInteraction"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1821,7 +1810,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         // PlayerHub
         m_PlayerHub = asset.FindActionMap("PlayerHub", throwIfNotFound: true);
         m_PlayerHub_Move = m_PlayerHub.FindAction("Move", throwIfNotFound: true);
-        m_PlayerHub_Interact = m_PlayerHub.FindAction("Interact", throwIfNotFound: true);
+        m_PlayerHub_HubInteraction = m_PlayerHub.FindAction("HubInteraction", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
@@ -2469,7 +2458,7 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerHub;
     private List<IPlayerHubActions> m_PlayerHubActionsCallbackInterfaces = new List<IPlayerHubActions>();
     private readonly InputAction m_PlayerHub_Move;
-    private readonly InputAction m_PlayerHub_Interact;
+    private readonly InputAction m_PlayerHub_HubInteraction;
     /// <summary>
     /// Provides access to input actions defined in input action map "PlayerHub".
     /// </summary>
@@ -2486,9 +2475,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_PlayerHub_Move;
         /// <summary>
-        /// Provides access to the underlying input action "PlayerHub/Interact".
+        /// Provides access to the underlying input action "PlayerHub/HubInteraction".
         /// </summary>
-        public InputAction @Interact => m_Wrapper.m_PlayerHub_Interact;
+        public InputAction @HubInteraction => m_Wrapper.m_PlayerHub_HubInteraction;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -2518,9 +2507,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Interact.started += instance.OnInteract;
-            @Interact.performed += instance.OnInteract;
-            @Interact.canceled += instance.OnInteract;
+            @HubInteraction.started += instance.OnHubInteraction;
+            @HubInteraction.performed += instance.OnHubInteraction;
+            @HubInteraction.canceled += instance.OnHubInteraction;
         }
 
         /// <summary>
@@ -2535,9 +2524,9 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Interact.started -= instance.OnInteract;
-            @Interact.performed -= instance.OnInteract;
-            @Interact.canceled -= instance.OnInteract;
+            @HubInteraction.started -= instance.OnHubInteraction;
+            @HubInteraction.performed -= instance.OnHubInteraction;
+            @HubInteraction.canceled -= instance.OnHubInteraction;
         }
 
         /// <summary>
@@ -2871,11 +2860,11 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Interact" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "HubInteraction" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnInteract(InputAction.CallbackContext context);
+        void OnHubInteraction(InputAction.CallbackContext context);
     }
 }

@@ -1468,12 +1468,12 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Interact",
+                    "name": "HubInteraction",
                     "type": "Button",
-                    "id": "e9ca3a31-64dd-4d1f-8c7a-a6f04f7d1efe",
+                    "id": "b7cf11b9-64c5-44c4-a89f-e4ae3281e7ea",
                     "expectedControlType": "",
                     "processors": "",
-                    "interactions": "Hold",
+                    "interactions": "",
                     "initialStateCheck": false
                 }
             ],
@@ -1612,23 +1612,12 @@
                 },
                 {
                     "name": "",
-                    "id": "95eb9dc4-e1f5-411e-b944-487106020be7",
+                    "id": "f2f8a189-da56-4ba5-a17b-250850ce2417",
                     "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "36afd95a-1a53-429a-894c-328ed058bcdb",
-                    "path": "<Gamepad>/buttonNorth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Gamepad",
-                    "action": "Interact",
+                    "groups": ";Keyboard&Mouse",
+                    "action": "HubInteraction",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
