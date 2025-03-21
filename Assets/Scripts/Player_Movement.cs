@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 
 public class Player_Movement : MonoBehaviour
 {
-    
+
     Gamepad gp = Gamepad.current;
     Keyboard kb = Keyboard.current;
     public TextMeshProUGUI debug_text;
@@ -27,6 +27,9 @@ public class Player_Movement : MonoBehaviour
     [SerializeField] public bool Is_Dashing = false;
     [SerializeField] private float Dash_Smoothing;
     [SerializeField] private TrailRenderer Dash_Effect;
+    [SerializeField] private LayerMask Player_Layer;
+    [SerializeField] private LayerMask Enemy_Layer;
+
 
     [Header("Interacting")]
     [SerializeField] InputAction Interaction;
@@ -160,6 +163,7 @@ public class Player_Movement : MonoBehaviour
     private IEnumerator Dashing() {
         
         Is_Dashing = true;
+        Physics.IgnoreLayerCollision(6, 7, true);// 6 and 7 represents Layer indexs
         Dash_Effect.emitting = true;
         Player_rb.linearVelocity = new Vector3(transform.forward.x,0,transform.forward.z) * Mathf.Lerp(0f,Dash_Force,Dash_Smoothing);
         yield return new WaitForSeconds(Dash_Cooldown);
@@ -170,8 +174,10 @@ public class Player_Movement : MonoBehaviour
 
     private IEnumerator End_Dash() { 
         yield return new WaitForEndOfFrame();
+        Physics.IgnoreLayerCollision(6, 7, false);
         Is_Dashing = false;
         Dash_Effect.emitting = false;
+        
         Current_State = Player_States.Idle;
         
 

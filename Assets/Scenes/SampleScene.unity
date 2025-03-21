@@ -955,7 +955,7 @@ GameObject:
   - component: {fileID: 583748157}
   - component: {fileID: 583748156}
   - component: {fileID: 583748158}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
@@ -1859,7 +1859,7 @@ GameObject:
   - component: {fileID: 1777557969}
   - component: {fileID: 1777557973}
   - component: {fileID: 1777557971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -2037,6 +2037,12 @@ MonoBehaviour:
   Is_Dashing: 0
   Dash_Smoothing: 0.6
   Dash_Effect: {fileID: 1734760318}
+  Player_Layer:
+    serializedVersion: 2
+    m_Bits: 64
+  Enemy_Layer:
+    serializedVersion: 2
+    m_Bits: 128
   Interaction:
     m_Name: Interaction
     m_Type: 0
