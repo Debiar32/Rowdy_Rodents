@@ -367,6 +367,7 @@ MonoBehaviour:
   Turning_Speed: 17
   HubIsInteracting: 0
   canInteractWith: 0
+  interactorIndicator: {fileID: 7441035058249940933}
   Nerd: 0
   allySuitUpgrades: 0
   allyWeaponUpgrades: 0

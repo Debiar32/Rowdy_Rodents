@@ -1,5 +1,91 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+public class Scr_HubLevelSelector : MonoBehaviour
+{
+    public float interactionRadius = 10f; // Adjustable range per object
+    private SphereCollider interactionCollider;
+
+    public Camera_Follow cameraScript;
+    [SerializeField] public Transform Camera_Target01;
+    [SerializeField] public Transform Camera_Target02;
+
+    public GameObject interactionCanvas; // Assign the UI canvas per object
+
+
+    private Transform player;
+    public Player_HubMovement playerHubMove;
+
+    private void Start()
+    {
+        // Create and configure the Sphere Collider
+        interactionCollider = gameObject.AddComponent<SphereCollider>();
+        interactionCollider.isTrigger = true; // Set it as a trigger
+        interactionCollider.radius = interactionRadius; // Adjust radius dynamically
+        interactionCanvas.SetActive(false);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player entered interaction range!");
+            playerHubMove.canInteractWith = true;
+            playerHubMove.LevelSelectorOn = true;
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player left interaction range!");
+            playerHubMove.canInteractWith = false;
+            playerHubMove.LevelSelectorOn = false;
+        }
+    }
+
+    public void OpenMenuLevelSelector()
+    {
+        Debug.Log("Nerd Shop Works!");
+        playerHubMove.HubIsInteracting = true;
+        interactionCanvas.SetActive(true);
+        cameraScript.Camera_Target = Camera_Target02;
+    }
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Scr_HubLevelSelector : MonoBehaviour
 {
@@ -15,7 +101,7 @@ public class Scr_HubLevelSelector : MonoBehaviour
     private bool isInTriggerZone = false;  // Flag to check if the player is in trigger zone
     public bool LevelSelectorOn = false;
 
-    /*void Start()
+    void Start()
     {
         // Set the default material to all buttons
         foreach (var sphere in spheres)
@@ -27,9 +113,8 @@ public class Scr_HubLevelSelector : MonoBehaviour
         if (spheres.Length > 0)
             spheres[0].GetComponent<Renderer>().material = selectedMaterial;
     }
-    */
 
-    void Update()
+void Update()
     {
         // Input for navigating left or right between spheres
         if (isInTriggerZone)
@@ -94,3 +179,4 @@ public class Scr_HubLevelSelector : MonoBehaviour
         SceneManager.LoadScene(levelName);  // Load the selected level
     }
 }
+*/

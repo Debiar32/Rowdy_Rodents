@@ -35,7 +35,7 @@ public class Player_HubMovement : MonoBehaviour
     public scr_AllyWeaponUpgrades weaponUpgradesScript;
     public scr_AllySuitUpgrades suitUpgradesScript;
     public scr_AllyNerd nerdScript;
-    //private Scr_HubLevelSelector levelSelectorScript;
+    public Scr_HubLevelSelector levelSelectorScript;
 
 
     private void Awake()
@@ -150,9 +150,14 @@ public class Player_HubMovement : MonoBehaviour
                 Debug.Log("Shop 03 Works!");
                 nerdScript.OpenMenuNerd();
             }
+            else if (LevelSelectorOn)
+            {
+                Debug.Log("Shop 04 Works!");
+                levelSelectorScript.OpenMenuLevelSelector();
+            }
             else
             {
-                Debug.Log("WORKS THIS PART!");
+                Debug.Log("Nothing Selected");
             }
         }
     }
