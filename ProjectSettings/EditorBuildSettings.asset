@@ -29,6 +29,21 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Menus/LoadingScreen.unity
     guid: 7d919c57cf1b3604a8d946b0f45544ca
+  - enabled: 1
+    path: Assets/Scenes/Hub/Lvl_Hub.unity
+    guid: 6725f6029feffce42b6c8c0b91ee5651
+  - enabled: 1
+    path: Assets/Scenes/Levels/Lvl_00_TutorialNew.unity
+    guid: 6f6211fc647146d47be995fd19556514
+  - enabled: 1
+    path: Assets/Scenes/Levels/Lvl_01_Village.unity
+    guid: f00d2e7268250a745b3e0ad7264246d5
+  - enabled: 1
+    path: Assets/Scenes/Levels/Lvl_02_Swamp.unity
+    guid: 56a9ef2953919544fb2dd13c257c7f47
+  - enabled: 1
+    path: Assets/Scenes/Levels/Lvl_03_Outpost.unity
+    guid: 98e60d16ecab0c04a977b58260d34aa0
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 289c1b55c9541489481df5cc06664110, type: 3}
   m_UseUCBPForAssetBundles: 0
